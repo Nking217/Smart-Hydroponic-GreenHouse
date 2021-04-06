@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg3851"
+   version="1.1"
+   viewBox="0 0 50 85"
+   height="85mm"
+   width="50mm">
+  <defs
+     id="defs3845">
+    <linearGradient
+       osb:paint="solid"
+       id="linearGradient4912">
+      <stop
+         id="stop4910"
+         offset="0"
+         style="stop-color:#fffeff;stop-opacity:1;" />
+    </linearGradient>
+  </defs>
+  <metadata
+     id="metadata3848">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-78.630768,-56.445072)"
+     style="display:inline"
+     id="layer1">
+    <circle
+       r="0.73499119"
+       cy="59.263142"
+       cx="99.838234"
+       id="path4942"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:0.5678392;stroke:#fffcff;stroke-width:0.26458332;stroke-opacity:1" />
+    <g
+       id="copper1">
+      <g
+         id="copper0">
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="107.37596"
+           cy="139.19559"
+           connectorname="XOUT"
+           r="0.72390002"
+           id="connector26pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="104.83597"
+           cy="139.19559"
+           connectorname="YOUT"
+           r="0.72390002"
+           id="connector27pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="102.29597"
+           cy="139.19559"
+           connectorname="ZOUT"
+           r="0.72390002"
+           id="connector28pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="99.755974"
+           cy="139.19559"
+           connectorname="ST"
+           r="0.72390002"
+           id="connector29pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="97.215973"
+           cy="139.19559"
+           connectorname="VREF"
+           r="0.72390002"
+           id="connector30pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="94.675957"
+           cy="139.19559"
+           connectorname="YRATE"
+           r="0.72390002"
+           id="connector31pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="92.135963"
+           cy="139.19559"
+           connectorname="XRATE"
+           r="0.72390002"
+           id="connector32pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="89.595963"
+           cy="139.19559"
+           connectorname="GND"
+           r="0.72390002"
+           id="connector33pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="87.055962"
+           cy="139.19559"
+           connectorname="3.3V"
+           r="0.72390002"
+           id="connector34pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="99.902428"
+           cy="59.327324"
+           connectorname="AZ"
+           r="0.72390002"
+           id="connector35pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="102.44242"
+           cy="59.327324"
+           connectorname="PTATS"
+           r="0.72390002"
+           id="connector36pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="104.98242"
+           cy="59.327324"
+           connectorname="Y4.5OUT"
+           r="0.72390002"
+           id="connector37pad" />
+        <circle
+           style="fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="107.52242"
+           cy="59.327324"
+           connectorname="X4.5OUT"
+           r="0.72390002"
+           id="connector38pad" />
+        <circle
+           style="display:inline;fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="120.08531"
+           cy="139.22447"
+           connectorname="XOUT"
+           r="0.72390002"
+           id="connector26pad-3" />
+        <circle
+           style="display:inline;fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="117.54532"
+           cy="139.22447"
+           connectorname="YOUT"
+           r="0.72390002"
+           id="connector27pad-6" />
+        <circle
+           style="display:inline;fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="115.00532"
+           cy="139.22447"
+           connectorname="ZOUT"
+           r="0.72390002"
+           id="connector28pad-9" />
+        <circle
+           style="display:inline;fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="112.46533"
+           cy="139.22447"
+           connectorname="ST"
+           r="0.72390002"
+           id="connector29pad-6" />
+        <circle
+           style="display:inline;fill:none;stroke:#f7bd13;stroke-width:0.43179998"
+           cx="109.92534"
+           cy="139.22447"
+           connectorname="VREF"
+           r="0.72390002"
+           id="connector30pad-7" />
+      </g>
+    </g>
+    <g
+       id="text">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.80865"
+         y="87.454613"
+         id="text5373"
+         transform="rotate(-90)"><tspan
+           id="tspan5371"
+           x="-137.80865"
+           y="87.454613"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0">VCC</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.85466"
+         y="89.973976"
+         id="text5373-9"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8"
+           x="-137.85466"
+           y="89.973976"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0">GND</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.85466"
+         y="92.528801"
+         id="text5373-9-0"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1"
+           x="-137.85466"
+           y="92.528801"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0">CS</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.89857"
+         y="95.034973"
+         id="text5373-9-0-0"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1"
+           x="-137.89857"
+           y="95.034973"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0 0">RESET</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.89857"
+         y="97.540619"
+         id="text5373-9-0-0-1"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1-8"
+           x="-137.89857"
+           y="97.540619"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0">DC</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.86447"
+         y="100.09638"
+         id="text5373-9-0-0-1-2"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1-8-3"
+           x="-137.86447"
+           y="100.09638"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0 0 0 0 0 0">SDI(MOSI)</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.86447"
+         y="102.66885"
+         id="text5373-9-0-0-1-8"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1-8-8"
+           x="-137.86447"
+           y="102.66885"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0">SCK</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.89857"
+         y="105.17451"
+         id="text5373-9-0-0-1-8-1"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1-8-8-9"
+           x="-137.89857"
+           y="105.17451"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0">LED</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.86447"
+         y="107.73027"
+         id="text5373-9-0-0-1-8-1-5"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1-8-8-9-1"
+           x="-137.86447"
+           y="107.73027"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0 0 0 0 0 0">SDO(MISO)</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.79523"
+         y="110.24699"
+         id="text5373-9-0-0-1-8-1-5-6"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1-8-8-9-1-8"
+           x="-137.79523"
+           y="110.24699"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0 0">T_CLK</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.79523"
+         y="112.80467"
+         id="text5373-9-0-0-1-8-1-5-6-0"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1-8-8-9-1-8-6"
+           x="-137.79523"
+           y="112.80467"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0">T_CS</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.79523"
+         y="115.32703"
+         id="text5373-9-0-0-1-8-1-5-6-0-7"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1-8-8-9-1-8-6-4"
+           x="-137.79523"
+           y="115.32703"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0 0">T_DIN</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.79523"
+         y="117.84241"
+         id="text5373-9-0-0-1-8-1-5-6-0-7-0"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1-8-8-9-1-8-6-4-7"
+           x="-137.79523"
+           y="117.84241"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0">T_DO</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="-137.79523"
+         y="120.35606"
+         id="text5373-9-0-0-1-8-1-5-6-0-7-0-2"
+         transform="rotate(-90)"><tspan
+           id="tspan5371-8-1-1-8-8-9-1-8-6-4-7-4"
+           x="-137.79523"
+           y="120.35606"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0 0">T_IRQ</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="60.679699"
+         y="-102.1453"
+         id="text5373-9-0-0-1-8-1-5-6-0-7-0-2-5"
+         transform="rotate(90)"><tspan
+           id="tspan5371-8-1-1-8-8-9-1-8-6-4-7-4-1"
+           x="60.679699"
+           y="-102.1453"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0 0 0 0">SD_MOSI</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="60.679699"
+         y="-99.497688"
+         id="text5373-9-0-0-1-8-1-5-6-0-7-0-2-5-8"
+         transform="rotate(90)"><tspan
+           id="tspan5371-8-1-1-8-8-9-1-8-6-4-7-4-1-4"
+           x="60.679699"
+           y="-99.497688"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0 0">SD_CS</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="60.679699"
+         y="-104.84203"
+         id="text5373-9-0-0-1-8-1-5-6-0-7-0-2-5-0"
+         transform="rotate(90)"><tspan
+           id="tspan5371-8-1-1-8-8-9-1-8-6-4-7-4-1-8"
+           x="60.679699"
+           y="-104.84203"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0 0 0 0">SD_MISO</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="60.679699"
+         y="-107.24747"
+         id="text5373-9-0-0-1-8-1-5-6-0-7-0-2-5-0-1"
+         transform="rotate(90)"><tspan
+           id="tspan5371-8-1-1-8-8-9-1-8-6-4-7-4-1-8-9"
+           x="60.679699"
+           y="-107.24747"
+           style="font-size:1.05833328px;stroke-width:0.26458332"
+           rotate="0 0 0 0 0 0 0">SD_SCK</tspan></text>
+    </g>
+  </g>
+</svg>
