@@ -2,14 +2,19 @@
 /// NOTIFICATIONS ///
 /////////////////////
 
-void notifyPumpError(){
-  Serial.print("Pump Error, Pleas cheek the water pump.");
+void notifyPumpError(char* errorMsg){
+  Serial.print("Pump Error, Pleas cheek the water pump. ");
+  Serial.println(errorMsg);
   lcdNotifyError("Pump Error");
-  espNotifyError(ERROR_PUMP, "Pump Error", PRIORITY_HIGH);
+  serverNotifyError(ERROR_PUMP, errorMsg);
 }
 
-void notifyDrainageError(){
-  Serial.print("Drainage Error, Please cheekc your drainage fosset.");
+void notifyOFossetError(){
+  Serial.print("OFosset Error, Please cheekc your osmosis fosset.");
+}
+
+void notifyNFossetError(){
+  Serial.print("NFosset Error, Please cheekc your normal fosset.");
 }
 
 void notifyLowBatteryWarning(float voltage){

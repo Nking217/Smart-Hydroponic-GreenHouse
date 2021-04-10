@@ -3,7 +3,8 @@
 //////////////////
 
 void lcdInit(){
-  lcd.begin();
+  lcd.Init_LCD();
+  lcd.Fill_Screen(BLACK);
 }
 
 void lcdTest(){
@@ -20,6 +21,7 @@ void lcdShowState(){ //All the lcd screen stuff (idk).
 }
 
 void lcdShowHomeScreen(){
+  
   if (_Lcd_Status == LCD_PAGE_HOME){
     return;
   }
@@ -54,6 +56,7 @@ void lcdShowHomeScreenStatus(){
   lcdWriteStatus(100, 122, drainageStatus_Short());
   lcdWriteStatus(100, 141, batteryStatus_Short());
 }
+
 
 void lcdWriteStatus(int x, int y, StatusResult res)
 {

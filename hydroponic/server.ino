@@ -14,6 +14,15 @@
 #define SERVER_REQUEST_SENSOR_DATA 2
 #define SERVER_REQUEST_LOG 3
 
+long _RequestID = 0;
+
+long getRequestID()
+{
+  long reqID = _RequestID;
+  _RequestID++;
+  return reqID;
+}
+
 void serverInit(){
   
 }
@@ -44,13 +53,14 @@ void serverSendLog(byte sensorId, long timeStamp, byte priority, String message)
   data += "&";
   data += "message=";
   data += message;
-  //espSendPostRequest(url, data);
+  espSendPostRequest(getRequestID(), url, data);
   /// Testing with get request ///
-  espSendGetRequest(url);
-  url = url + "?" + data;
+  //espSendGetRequest(url);
+  //url = url + "?" + data;
 }
 
 void serverSendSensorData(byte sensorId, long timeStamp, int value){
+  //TODO: add request to queue and send data from queue periodically. delete data from queue only after receiving confirmation that it arived on server.
   _ServerRequestType = SERVER_REQUEST_SENSOR_DATA;
   String url = "http://"+serverGetAdress()+"/board";
   String data = "cmd=measure";
@@ -62,10 +72,10 @@ void serverSendSensorData(byte sensorId, long timeStamp, int value){
   data += "&";
   data += "value=";
   data += String(value);
-  //espSendPostRequest(url, data);
+  espSendPostRequest(getRequestID(), url, data);
   ///// Testing with get request /////
-  url = url + "?" + data;
-  espSendGetRequest(url);
+  //url = url + "?" + data; 
+  //espSendGetRequest(requestId, url);
 }
 
 
@@ -102,8 +112,31 @@ void serverSetAdress(String value){
   //TODO: save Adress to EEPROM memory
 }
 
-void serverNotifyError(int errorID, String error, int priorty){
-  
+void serverNotifyError(int errorType, String errorMsg){
+  _ServerRequestType = SERVER_REQUEST_LOG;
+  String url = "http://"+serverGetAdress()+"/board?";
+  url += "cmd=log";
+  String data = "";
+  if(sensorId != 0){
+    data += "sid=" + sensorId;
+    data += "&";
+  }
+  data += "time=";
+  data += timeStamp;
+  data += "&";
+  data += "priority=";
+  data += PIORITY_HIGH;
+  data += "&";
+  data += "errorType=";
+  data += errorType;
+  data += "&";
+  data += "message=";
+  data += errorMsg;
+  espSendPostRequest(getRequestID(), url, data);
+  /// Testing with get request ///
+  //espSendGetRequest(url);
+  //url = url + "?" + data;
+
 }
 
 void serverRandomTest(){

@@ -3,6 +3,7 @@
 //#include <M2M_LM75A.h> //Temp sensor libary
 #include "hydroponic.h"
 #include "TFT9341.h"
+#include "ili9488.h"
 #define BATTERY_VOLTAGE_TEST_PIN A1
 #define PUMP_CURRENT_TEST_PIN A0
 #define PUMP_FLOW_TEST_PIN A6
