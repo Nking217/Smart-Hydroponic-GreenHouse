@@ -1,7 +1,7 @@
 //////////////////
 /// LCD SCREEN ///
 //////////////////
-
+/*
 void lcdInit(){
   lcd.Init_LCD();
   lcd.Fill_Screen(BLACK);
@@ -94,3 +94,4 @@ void print(int x, int y, String text)
   lcd.gotoxy(x, y);
   lcd.print((char*)text.c_str());
 }
+*/

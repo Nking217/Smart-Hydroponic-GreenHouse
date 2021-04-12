@@ -38,7 +38,7 @@ void espTest(){
   byte sensorId = 4;
   long timeStamp = 0;
   int value = 6900;
-  serverSendSensorData(sensorId, timeStamp, value);
+//  serverSendSensorData(sensorId, timeStamp, value);
   //espSendGetRequest("http://hamama.ew.r.appspot.com/board?cmd=measure&sid=4&time=0&value=6900");  //TODO Make a get request for the server on espSendGetRequest...
   do{
     content = readFromEsp();

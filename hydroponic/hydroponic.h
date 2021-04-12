@@ -20,7 +20,7 @@ struct StatusResult{
 void batteryInit();
 void batteryTest();
 float batteryGetVoltage();
-
+void serialInit();
 void test();
 
 void turbidityTest();

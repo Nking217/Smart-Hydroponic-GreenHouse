@@ -2,8 +2,8 @@
 /// Temprature sensor ///
 /////////////////////////
 
-#include "dht.h"
-dht DHT;
+//#include "dht.h"
+//dht DHT;
 
 
 void tempratureSensorInit(){

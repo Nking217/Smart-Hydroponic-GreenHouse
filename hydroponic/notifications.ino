@@ -6,7 +6,7 @@ void notifyPumpError(char* errorMsg){
   Serial.print("Pump Error, Pleas cheek the water pump. ");
   Serial.println(errorMsg);
   lcdNotifyError("Pump Error");
-  serverNotifyError(ERROR_PUMP, errorMsg);
+//  serverNotifyError(ERROR_PUMP, errorMsg);
 }
 
 void notifyOFossetError(){
@@ -24,7 +24,8 @@ void notifyLowBatteryWarning(float voltage){
 void notifyLowBatteryError(float voltage){
   
 }
-
+/*
 void showBatteryPrecent(byte percent){
   Serial.print("Battery percemt: ", percent);
 }
+*/
