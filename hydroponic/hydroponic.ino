@@ -1,9 +1,8 @@
-//#include <dht.h>
+#include <dht.h>
 
-//#include <M2M_LM75A.h> //Temp sensor libary
 #include "hydroponic.h"
-//#include "TFT9341.h"
-//#include "ili9488.h"
+#include "TFT9341.h"
+#include "ili9488.h"
 #define BATTERY_VOLTAGE_TEST_PIN A1
 #define PUMP_CURRENT_TEST_PIN A0
 #define PUMP_FLOW_TEST_PIN A6
@@ -92,9 +91,9 @@ void setup(){
   drainageInit();
   turbidityInit();
   pumpCurrentInit();
-  //lcdInit();
+  lcdInit();
   espInit();
-  //eepromInit();
+  eepromInit();
 }
 
 void loop()
@@ -108,7 +107,7 @@ void loop()
 void mainLogic() //
 {
   espReconnect();
-//  serverReconnect();
+  serverReconnect();
   
   int h = waterHightRead();
   if(h < MINIMUM_WATER_FOR_PUMP){ //The water is bellow the minimum - pump stop and the fosset is open
@@ -153,16 +152,16 @@ void mainLogic() //
 
 void test()
 {
-//  temperatuereTest();
+  temperatuereTest();
   ofossetTest();
   nfossetTest();
   pumpTest();
   drainageTest();
   turbidityTest();
-//  waterHightTest();
-//  pumpCurrentTest();
-//  lcdTest();
-//  espTest();
+  waterHightTest();
+  pumpCurrentTest();
+  lcdTest();
+  espTest();
 }
 
 void serialInit(){
