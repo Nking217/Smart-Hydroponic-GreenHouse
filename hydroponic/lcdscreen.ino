@@ -1,7 +1,7 @@
 //////////////////
 /// LCD SCREEN ///
 //////////////////
-/*
+
 void lcdInit(){
   lcd.Init_LCD();
   lcd.Fill_Screen(BLACK);

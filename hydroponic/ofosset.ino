@@ -93,6 +93,8 @@ String ofossetStatus_Long(){
   bool ofossetCurrentOn = ofossetIsRunning();
   bool ofossetCanRunVar = ofossetCanRun();
   bool ofossetSuposeToRun = ((_OFossetManualRequest == FossetManualRequestValue::FossetAutomatic && ofossetCanRunVar) || _OFossetManualRequest == FossetManualRequestValue::Open);//complete by the enum     //c//
+
+  
 }
 
 
