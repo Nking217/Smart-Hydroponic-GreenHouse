@@ -1,7 +1,7 @@
 //////////////////
 /// LCD SCREEN ///
 //////////////////
-
+#include "ili9488.h"
 void lcdInit(){
   lcd.Init_LCD();
   lcd.Fill_Screen(BLACK);
@@ -9,7 +9,7 @@ void lcdInit(){
 
 void lcdTest(){
   lcdShowHomeScreen();
-  lcdShowHomeScreenStatus();
+ // lcdShowHomeScreenStatus();
 }
 
 void lcdNotifyError(String error){
@@ -26,15 +26,14 @@ void lcdShowHomeScreen(){
     return;
   }
   _Lcd_Status = LCD_PAGE_HOME;
-  lcd.setFont(4);
-  lcd.gotoxy(30,4); //take this text to the center
-  lcd.print("Home Screen");
-  lcd.drawHLine(25,35,265);
-  lcd.setFont(2);
+  lcd.Set_Text_Size(4);
+  lcd.Print_String("Home Screen", 30, 4);
+  lcd.Draw_Fast_HLine(25,35,265); //make a line on the screen
+  /*lcd.Set_Text_Size(2);
   lcd.gotoxy(5,40);
   lcd.print("Status");
   lcd.drawRect(5,60,150,180); //Status show area
-  lcd.setFont(2);
+  lcd.Set_Text_Size(2);
   lcd.gotoxy(10,65);
   lcd.print("NFosset:");
   lcd.gotoxy(10,84);
@@ -47,8 +46,9 @@ void lcdShowHomeScreen(){
   lcd.print("Battery:");
   lcd.gotoxy(10,160);
   lcd.print("Water:");
+  */
 }
-
+/*
 void lcdShowHomeScreenStatus(){
   lcdWriteStatus(100, 65, nfossetStatus_Short());
   lcdWriteStatus(100, 84, ofossetStatus_Short());

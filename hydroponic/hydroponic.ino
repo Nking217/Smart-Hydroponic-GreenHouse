@@ -1,7 +1,6 @@
-#include <dht.h>
+//#include <dht.h>
 
 #include "hydroponic.h"
-#include "TFT9341.h"
 #include "ili9488.h"
 #define BATTERY_VOLTAGE_TEST_PIN A1
 #define PUMP_CURRENT_TEST_PIN A0
@@ -107,7 +106,7 @@ void loop()
 void mainLogic() //
 {
   espReconnect();
-  serverReconnect();
+//  serverReconnect();
   
   int h = waterHightRead();
   if(h < MINIMUM_WATER_FOR_PUMP){ //The water is bellow the minimum - pump stop and the fosset is open
@@ -152,7 +151,7 @@ void mainLogic() //
 
 void test()
 {
-  temperatuereTest();
+//  temperatuereTest();
   ofossetTest();
   nfossetTest();
   pumpTest();
