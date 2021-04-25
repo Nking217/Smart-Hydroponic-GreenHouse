@@ -13,9 +13,11 @@ void nfossetInit(){
 
 void nfossetOpen(){
   digitalWrite(NFOSSET_PIN, HIGH);
+  _NfossetSignalOn() = 1;
 }
 void nfossetClose(){
   digitalWrite(NFOSSET_PIN, LOW);
+  _NfossetSignalOn() = 0;
 }
 
 void nfossetManualControl(FossetManualRequestValue value){
@@ -47,6 +49,15 @@ bool nfossetCanRun(){
     return false;
 }
 
+int _NfossetSignalOn();
+
+bool nfossetIsSignalOn(){
+  if(_NfossetSignalOn() == 1){
+    return true;
+  }
+  else
+    return false;
+}
 
 StatusResult nfossetStatus_Short(){
   bool nfossetFlowing = nfossetIsWaterFlowing();// Normal fosset
@@ -88,11 +99,17 @@ StatusResult nfossetStatus_Short(){
   }
 }
 
+bool nfossetSuposeToRun(){
+  return ((_NFossetManualRequest == FossetManualRequestValue::FossetAutomatic && nfossetCanRunVar) || _NFossetManualRequest == FossetManualRequestValue::Open);//complete by the enum     //c//
+}
 String nfossetStatus_Long(){
-  bool nfossetFlowing = nfossetIsWaterFlowing();// Normal fosset
-  bool nfossetCurrentOn = nfossetIsRunning();
+  bool nfossetWaterFlowing = nfossetIsWaterFlowing();// Normal fosset
+  bool nfossetCurrentOn = nfossetIsCurrentOn();
+  bool nfossetSignalOn = nfossetIsSignalOn();
   bool nfossetCanRunVar = nfossetCanRun();
-  bool nfossetSuposeToRun = ((_NFossetManualRequest == FossetManualRequestValue::FossetAutomatic && nfossetCanRunVar) || _NFossetManualRequest == FossetManualRequestValue::Open);//complete by the enum     //c//
+  bool nfossetSuposeToRun = nfossetSuposeToRun();
+
+  StatusResult flowingResult = StatusResult("water flowing", "no water", Error);
   
 }
 
@@ -125,7 +142,7 @@ void nfossetCurrentTest(){
   //Serial.println(nfossetCurrentRead());
 }
 
-bool nfossetIsRunning(){
+bool nfossetIsCurrentOn(){
   int c = analogRead(NFOSSET_CURRENT_TEST_PIN);
   return c > 0; //Cheeks if the current is higer than 0. If its higer than 0 its true if not false.
 }
