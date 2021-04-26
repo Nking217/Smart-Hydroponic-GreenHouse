@@ -2,8 +2,9 @@
 
 struct StatusResult{
   String StatusText;
-  int Priorty;  //STATUS_OK, STATUS_WARNING, STATUS_ERROR
-  StatusResult(String statusText, int priorty)
+  int Status; //STATUS_OK, STATUS_WARNING, STATUS_ERROR
+  int Priorty;  //PRIORITY_HIGH, PRIORITY_MEDIUM, PRIORITY_LOW
+  StatusResult(String statusText, int status, int priorty)
   {
     StatusText = statusText;
     Priorty = priorty;

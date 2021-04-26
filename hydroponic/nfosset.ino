@@ -58,8 +58,8 @@ bool nfossetIsSignalOn(){
   else
     return false;
 }
-
-StatusResult nfossetStatus_Short(){
+/*
+StatusResult nfossetStatus_Short(){ //// Short Status - old code ////
   bool nfossetFlowing = nfossetIsWaterFlowing();// Normal fosset
   bool nfossetCanRunVar = nfossetCanRun();
   
@@ -98,18 +98,89 @@ StatusResult nfossetStatus_Short(){
       
   }
 }
+*/
 
 bool nfossetSuposeToRun(){
   return ((_NFossetManualRequest == FossetManualRequestValue::FossetAutomatic && nfossetCanRunVar) || _NFossetManualRequest == FossetManualRequestValue::Open);//complete by the enum     //c//
 }
-String nfossetStatus_Long(){
+
+void cheeckStatus(){
   bool nfossetWaterFlowing = nfossetIsWaterFlowing();// Normal fosset
   bool nfossetCurrentOn = nfossetIsCurrentOn();
   bool nfossetSignalOn = nfossetIsSignalOn();
-  bool nfossetCanRunVar = nfossetCanRun();
   bool nfossetSuposeToRun = nfossetSuposeToRun();
+  
+  int h = waterHightRead();
+  
+  if(h >= MAXIMUM_WATER_IN_TANK){ //If the water levle is the maximum levle for the tank, the fosset will be closed.
+    if(nfossetSignalOn){
+      _NfossetStatus.SignalOn = StatusResult("Error: Fosset signal pin on while water levle too high", STATUS_ERROR, PRIORITY_HIGH);
+      _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_HIGH);
+    }
+    else{
+      _NfossetStatus.SignalOn = StatusResult("Off: Fosset signal off", STATUS_OK, PRIORITY_LOW);
+      _NfossetStatus.Short = StatusResult("Off", STATUS_OK, PRIORITY_LOW);
+    }
+  }
+  else{
+    if(nfossetSuposeToRun && !nfossetSignalOn){
+      _NfossetStatus.SignalOn = StatusResult("Error: Fosset signal pin off while water levle is low", STATUS_ERROR, PRIORITY_MEDIUM);
+      _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_MEDIUM);
+    }
+    else{
+      _NfossetStatus.SignalOn = StatusResult("On: Fosset signal pin on", STATUS_OK, PRIORITY_LOW);
+      _NfossetStatus.Short = StatusResult("On", STATUS_OK, PRIORITY_LOW);
+    }
+  }
+  
+  if(nfossetSignalOn){
+     if(!nfossetWaterFlowing){
+        _NfossetStatus.WaterFlowing = StatusResult("Error: Water not flowing while signal pin is on.", STATUS_ERROR, PRIORITY_MEDIUM);
+        _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_MEDIUM);
+     }
+     else{
+        _NfossetStatus.WaterFlowing = StatusResult("On: Water flowing", STATUS_OK, PRIORITY_LOW);
+        _NfossetStatus.Short = StatusResult("On", STATUS_OK, PRIORITY_LOW);
+     }
+     if(!nfossetCurrentOn){
+        _NfossetStatus.CurrentOn = StatusResult("Error: No current while signal pin is on", STATUS_ERROR, PRIORITY_MEDIUM);
+        _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_MEDIUM);
+     }
+     else{
+        _NfossetStatus.CurrentOn = StatusResult("Current on", STATUS_OK, PRIORITY_LOW);
+        _NfossetStatus.Short = StatusResult("On", STATUS_OK, PRIORITY_LOW);
+     }
+  }
+  else{
+     if(nfossetWaterFlowing){
+        _NfossetStatus.WaterFlowing = StatusResult("Error: Water flowing while signal pin is off", STATUS_ERROR, PRIORITY_HIGH);
+        _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_HIGH);
+     }
+     else{
+        _NfossetStatus.WaterFlowing = StatusResult("No warer flowing", STATUS_OK, PRIORITY_LOW);
+        _NfossetStatus.Short = StatusResult("Off", STATUS_OK, PRIORITY_LOW);
+     }
+     if(nfossetCurrentOn){
+        _NfossetStatus.CurrentOn = StatusResult("Error: Fosset has current while signal pin is off", STATUS_ERROR, PRIORITY_HIGH);
+        _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_HIGH);
+     }
+     else{
+        _NfossetStatus.CurrentOn = StatusResult("No current", STATUS_OK, PRIORITY_LOW);
+        _NfossetStatus.Short = StatusResult("Off", STATUS_OK, PRIORITY_LOW);
+     }
+  }
+}
 
-  StatusResult flowingResult = StatusResult("water flowing", "no water", Error);
+nfossetStatus _NfossetStatus;
+
+class nfossetStatus{
+  StatusResult WaterFlowing;
+  StatusResult CurrentOn;
+  StatusResult SignalOn;
+  StatusResult CanRun;
+  StatusResult SuposeToRun;
+
+  StatusResult Short; 
   
 }
 

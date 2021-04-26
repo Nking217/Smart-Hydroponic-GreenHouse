@@ -48,9 +48,11 @@ void lcdShowHomeScreen(){
   lcd.print("Water:");
   */
 }
+
+
 /*
 void lcdShowHomeScreenStatus(){
-  lcdWriteStatus(100, 65, nfossetStatus_Short());
+  lcdWriteStatus(100, 65, _NfossetStatus.Short());
   lcdWriteStatus(100, 84, ofossetStatus_Short());
   lcdWriteStatus(100, 103, pumpStatus_Short());
   lcdWriteStatus(100, 122, drainageStatus_Short());
