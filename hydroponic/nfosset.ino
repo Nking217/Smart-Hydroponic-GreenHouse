@@ -1,6 +1,7 @@
 //////////////////////
 /// NORMAL FOSSET  /// - Water in... 
 //////////////////////
+/*
 void nfossetTest(){
   nfossetOpen();
   delay(500);
@@ -99,7 +100,7 @@ StatusResult nfossetStatus_Short(){ //// Short Status - old code ////
   }
 }
 */
-
+/*
 bool nfossetSuposeToRun(){
   return ((_NFossetManualRequest == FossetManualRequestValue::FossetAutomatic && nfossetCanRunVar) || _NFossetManualRequest == FossetManualRequestValue::Open);//complete by the enum     //c//
 }
@@ -217,3 +218,4 @@ bool nfossetIsCurrentOn(){
   int c = analogRead(NFOSSET_CURRENT_TEST_PIN);
   return c > 0; //Cheeks if the current is higer than 0. If its higer than 0 its true if not false.
 }
+*/
