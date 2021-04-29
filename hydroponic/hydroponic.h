@@ -13,8 +13,6 @@ struct StatusResult{
 
 
 
-
-
 ///////////////////////////
 // function declarations //
 ///////////////////////////
@@ -61,6 +59,7 @@ bool nfossetIsWaterFlowing();
 void nfossetCurrentInit();
 void nfossetCurrentTest();
 bool nfossetIsRunning();
+int _NfossetSignalOn;
 
 void notifyPumpError();
 void notifyDrainageError();
@@ -74,6 +73,7 @@ void ofossetOpen();
 void ofossetClose();
 void ofossetManualControl();
 bool ofossetCanRun();
+int _OfossetSignalOn;
 
 void ofossetFlowInit();
 void ofossetFlowTest();

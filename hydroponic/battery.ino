@@ -1,7 +1,7 @@
 ///////////////
 /// BATTERY ///
 ///////////////
-/*
+
 void batteryInit(){
   pinMode(BATTERY_VOLTAGE_TEST_PIN, INPUT);
 }
@@ -20,7 +20,7 @@ float batteryGetPercent(){
   return map(d, 0, MAX_VALUE_FOR_VOLTAGE_TEST, 0, 100);
 }
 
-
+/*
 StatusResult batteryStatus_Short(){
   String batteryPercent = String(batteryGetPercent()) + "%";
   float batteryVoltage = batteryGetVoltage();

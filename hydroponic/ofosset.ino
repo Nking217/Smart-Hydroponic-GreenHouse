@@ -1,7 +1,7 @@
 ///////////////////////
 /// OSMOTIC FOSSET  /// - Water in... 
 ///////////////////////
-/*
+
 void ofossetTest(){
   ofossetOpen();
   delay(500);
@@ -14,9 +14,11 @@ void ofossetInit(){
 
 void ofossetOpen(){
   digitalWrite(OFOSSET_PIN, HIGH);
+  _OfossetSignalOn = 1;
 }
 void ofossetClose(){
   digitalWrite(OFOSSET_PIN, LOW);
+  _OfossetSignalOn = 0;
 }
 
 void ofossetManualControl(FossetManualRequestValue value){
@@ -40,6 +42,7 @@ void ofossetManualControl(FossetManualRequestValue value){
     }
   }
 }
+
 bool ofossetCanRun(){
   int h = waterHightRead();
   if(h < MAXIMUM_WATER_IN_TANK) //If the water levle is not the maximum the fosset will be open.
@@ -49,6 +52,16 @@ bool ofossetCanRun(){
     return false;
 }
 
+//int _OfossetSignalOn;
+
+bool ofossetSignalOn(){
+  if(_OfossetSignalOn == 1){
+    return true;
+  }
+  else
+    return false;
+}
+/*
 StatusResult ofossetStatus_Short(){
   bool ofossetFlowing = ofossetIsWaterFlowing();// osmotic fosset
   bool ofossetCanRunVar = ofossetCanRun();
@@ -88,16 +101,29 @@ StatusResult ofossetStatus_Short(){
       
   }
 }
-
-String ofossetStatus_Long(){
-  bool ofossetFlowing = ofossetIsWaterFlowing();// Normal fosset
+*/
+String ofossetStatus_Long(){ // Not in use //
+  bool ofossetFlowing = ofossetIsWaterFlowing();
   bool ofossetCurrentOn = ofossetIsRunning();
   bool ofossetCanRunVar = ofossetCanRun();
   bool ofossetSuposeToRun = ((_OFossetManualRequest == FossetManualRequestValue::FossetAutomatic && ofossetCanRunVar) || _OFossetManualRequest == FossetManualRequestValue::Open);//complete by the enum     //c//
-
-  
 }
 
+void ofossetCheeckStatus(){
+  bool ofossetWaterFlowing = ofossetIsWaterFlowing();
+}
+
+//ofossetStatus _OfossetStatus;
+
+class nfossetStauts{
+  StatusResult WaterFlowing;
+  StatusResult CurrentOn;
+  StatusResult SignalOn;
+  StatusResult CanRun;
+  StatusResult SuposeToRun;
+
+  StatusResult Short;
+};
 
 //////////////////////////////////
 /// OSMOTIC FOSSET FLOW SENSOR ///
@@ -131,4 +157,3 @@ bool ofossetIsRunning(){
   int c = analogRead(OFOSSET_CURRENT_TEST_PIN);
   return c > 0; //Cheeks if the current is higer than 0. If its higer than 0 its true if not false.
 }
-*/

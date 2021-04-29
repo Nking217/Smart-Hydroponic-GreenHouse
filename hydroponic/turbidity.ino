@@ -35,7 +35,7 @@ String turbidityStatus_Short(){ //TURBIDITY STATUS FOR THE HOME SCREEN (AR&AP)
     return "Error";
 }
 
-String turbidityStatusLong(){ //The shortest long status for now...  ////TEST////
+String turbidityStatusLong(){ //The shortest long status for now...  
   bool isWorking = tubidityIsWorking();
   int turbidityValue = turbidityReadPercent();
   

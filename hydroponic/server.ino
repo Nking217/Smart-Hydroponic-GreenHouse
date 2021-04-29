@@ -1,7 +1,6 @@
 ////////////////
 ///  SERVER  ///
 ////////////////
-/*
 //used in the serverReconnect for the _ServerConnectionStatus - Cheek if the ESP is connected to the Server.
 #define SERVER_CONNECTION_STATUS_CONNECTED 1
 #define SERVER_CONNECTION_STATUS_DISCONNECTED 0
@@ -142,4 +141,3 @@ void serverNotifyError(int errorType, String errorMsg){
 void serverRandomTest(){
   Serial2.print("https://httpbin.org/status/200");
 }
-*/

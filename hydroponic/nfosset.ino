@@ -1,7 +1,6 @@
 //////////////////////
 /// NORMAL FOSSET  /// - Water in... 
 //////////////////////
-/*
 void nfossetTest(){
   nfossetOpen();
   delay(500);
@@ -14,11 +13,11 @@ void nfossetInit(){
 
 void nfossetOpen(){
   digitalWrite(NFOSSET_PIN, HIGH);
-  _NfossetSignalOn() = 1;
+  _NfossetSignalOn = 1;
 }
 void nfossetClose(){
   digitalWrite(NFOSSET_PIN, LOW);
-  _NfossetSignalOn() = 0;
+  _NfossetSignalOn = 0;
 }
 
 void nfossetManualControl(FossetManualRequestValue value){
@@ -50,10 +49,10 @@ bool nfossetCanRun(){
     return false;
 }
 
-int _NfossetSignalOn();
+//int _NfossetSignalOn;
 
 bool nfossetIsSignalOn(){
-  if(_NfossetSignalOn() == 1){
+  if(_NfossetSignalOn == 1){
     return true;
   }
   else
@@ -100,7 +99,8 @@ StatusResult nfossetStatus_Short(){ //// Short Status - old code ////
   }
 }
 */
-/*
+bool nfossetCanRunVar = nfossetCanRun();
+
 bool nfossetSuposeToRun(){
   return ((_NFossetManualRequest == FossetManualRequestValue::FossetAutomatic && nfossetCanRunVar) || _NFossetManualRequest == FossetManualRequestValue::Open);//complete by the enum     //c//
 }
@@ -109,7 +109,7 @@ void cheeckStatus(){
   bool nfossetWaterFlowing = nfossetIsWaterFlowing();// Normal fosset
   bool nfossetCurrentOn = nfossetIsCurrentOn();
   bool nfossetSignalOn = nfossetIsSignalOn();
-  bool nfossetSuposeToRun = nfossetSuposeToRun();
+  bool nfossetSuposeToRunVar = nfossetSuposeToRun();
   
   int h = waterHightRead();
   
@@ -172,19 +172,20 @@ void cheeckStatus(){
   }
 }
 
-nfossetStatus _NfossetStatus;
-
+/// Not working right now ///
 class nfossetStatus{
-  StatusResult WaterFlowing;
-  StatusResult CurrentOn;
-  StatusResult SignalOn;
-  StatusResult CanRun;
-  StatusResult SuposeToRun;
+  public:
+    StatusResult WaterFlowing;
+    StatusResult CurrentOn;
+    StatusResult SignalOn;
+    StatusResult CanRun;
+    StatusResult SuposeToRun;
 
-  StatusResult Short; 
+    StatusResult Short; 
   
 }
 
+nfossetStatus _NfossetStatus;
 /////////////////////////////////
 /// NORMAL FOSSET FLOW SENSOR ///
 /////////////////////////////////

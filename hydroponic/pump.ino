@@ -1,8 +1,6 @@
-/*
 //////////////
 ///  PUMP  /// //Liquids to the system...
 //////////////
-
 void pumpTest(){
   pumpStart();
   delay(500);
@@ -52,7 +50,7 @@ bool pumpCanRun(){
   else
     return false;
 }
-
+/*
 StatusResult pumpStatus_Short(){
   bool isRunning = pumpIsRunning();
   bool isWaterFlowing = pumpIsWaterFlowing();
@@ -106,6 +104,7 @@ StatusResult pumpStatus_Short(){
     
   }
 }
+*/
 String pumpStatus_Long()
 {
   
