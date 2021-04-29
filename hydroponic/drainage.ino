@@ -2,7 +2,7 @@
 ///  DRAINAGE  ///
 //////////////////
 bool _DrainageIsOpen;
-
+/*
 void drainageTest(){
   drainageOpen();
   delay(500);
@@ -33,3 +33,4 @@ StatusResult drainageStatus_Short(){
   else
     return StatusResult ("Closed", STATUS_OK);
 }
+*/

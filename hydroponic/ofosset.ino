@@ -1,6 +1,7 @@
 ///////////////////////
 /// OSMOTIC FOSSET  /// - Water in... 
 ///////////////////////
+/*
 void ofossetTest(){
   ofossetOpen();
   delay(500);
@@ -130,3 +131,4 @@ bool ofossetIsRunning(){
   int c = analogRead(OFOSSET_CURRENT_TEST_PIN);
   return c > 0; //Cheeks if the current is higer than 0. If its higer than 0 its true if not false.
 }
+*/

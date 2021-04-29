@@ -1,7 +1,7 @@
 ///////////////
 /// BATTERY ///
 ///////////////
-
+/*
 void batteryInit(){
   pinMode(BATTERY_VOLTAGE_TEST_PIN, INPUT);
 }
@@ -25,9 +25,10 @@ StatusResult batteryStatus_Short(){
   String batteryPercent = String(batteryGetPercent()) + "%";
   float batteryVoltage = batteryGetVoltage();
   if(batteryGetVoltage > MINIMUM_VOLTAGE_FOR_WARNING)
-    return StatusResult(batteryPercent, STATUS_OK);
+    return StatusResult(batteryPercent, STATUS_OK, PRIORITY_LOW);
   else if(batteryGetVoltage > MINIMUM_VOLTAGE_FOR_ERROR)
     return StatusResult("Warning (" + batteryPercent + ")", STATUS_WARNING);
   else
     return StatusResult("Error", STATUS_ERROR);
 }
+*/
