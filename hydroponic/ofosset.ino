@@ -1,6 +1,20 @@
 ///////////////////////
 /// OSMOTIC FOSSET  /// - Water in... 
 ///////////////////////
+int _OfossetSignalOn;
+
+class ofossetStatus{
+  public:
+    StatusResult WaterFlowing;
+    StatusResult CurrentOn;
+    StatusResult SignalOn;
+    StatusResult CanRun;
+    StatusResult SuposeToRun;
+
+    StatusResult Short;    
+};
+
+ofossetStatus _OfossetStatus;
 
 void ofossetTest(){
   ofossetOpen();
@@ -9,7 +23,7 @@ void ofossetTest(){
   delay(500);
 }
 void ofossetInit(){
-  pinMode(OFOSSET_PIN, OUTPUT);
+  pinMode(OFOSSET_PIN, OUTPUT); 
 }
 
 void ofossetOpen(){
@@ -52,9 +66,8 @@ bool ofossetCanRun(){
     return false;
 }
 
-//int _OfossetSignalOn;
 
-bool ofossetSignalOn(){
+bool ofossetIsSignalOn(){
   if(_OfossetSignalOn == 1){
     return true;
   }
@@ -102,28 +115,27 @@ StatusResult ofossetStatus_Short(){
   }
 }
 */
-String ofossetStatus_Long(){ // Not in use //
-  bool ofossetFlowing = ofossetIsWaterFlowing();
-  bool ofossetCurrentOn = ofossetIsRunning();
-  bool ofossetCanRunVar = ofossetCanRun();
-  bool ofossetSuposeToRun = ((_OFossetManualRequest == FossetManualRequestValue::FossetAutomatic && ofossetCanRunVar) || _OFossetManualRequest == FossetManualRequestValue::Open);//complete by the enum     //c//
+
+bool ofossetCanRunVar = ofossetCanRun();
+
+bool ofossetSuposeToRun(){
+  return ((_OFossetManualRequest == FossetManualRequestValue::FossetAutomatic && ofossetCanRunVar) || _OFossetManualRequest == FossetManualRequestValue::Open);  //complete by the enum
 }
+
 
 void ofossetCheeckStatus(){
   bool ofossetWaterFlowing = ofossetIsWaterFlowing();
+  bool ofossetCurrentOn = ofossetIsCurrentOn();
+  bool ofossetSignalOn = ofossetIsSignalOn();
+  bool ofossetSuposeToRunVar = ofossetSuposeToRun();
+
+  int h = waterHightRead();
+
+  if(h
 }
 
-//ofossetStatus _OfossetStatus;
 
-class nfossetStauts{
-  StatusResult WaterFlowing;
-  StatusResult CurrentOn;
-  StatusResult SignalOn;
-  StatusResult CanRun;
-  StatusResult SuposeToRun;
 
-  StatusResult Short;
-};
 
 //////////////////////////////////
 /// OSMOTIC FOSSET FLOW SENSOR ///
@@ -153,7 +165,7 @@ void ofossetCurrentTest(){
   //Serial.println(ofossetCurrentRead());
 }
 
-bool ofossetIsRunning(){
+bool ofossetIsCurrentOn(){
   int c = analogRead(OFOSSET_CURRENT_TEST_PIN);
   return c > 0; //Cheeks if the current is higer than 0. If its higer than 0 its true if not false.
 }

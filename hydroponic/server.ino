@@ -111,7 +111,7 @@ void serverSetAdress(String value){
   //TODO: save Adress to EEPROM memory
 }
 
-void serverNotifyError(int errorType, String errorMsg){
+void serverNotifyError(int sensorId, int errorType, String errorMsg, String timeStamp){
   _ServerRequestType = SERVER_REQUEST_LOG;
   String url = "http://"+serverGetAdress()+"/board?";
   url += "cmd=log";
@@ -124,7 +124,7 @@ void serverNotifyError(int errorType, String errorMsg){
   data += timeStamp;
   data += "&";
   data += "priority=";
-  data += PIORITY_HIGH;
+  data += PRIORITY_HIGH;
   data += "&";
   data += "errorType=";
   data += errorType;

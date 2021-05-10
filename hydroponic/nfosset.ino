@@ -1,6 +1,20 @@
 //////////////////////
 /// NORMAL FOSSET  /// - Water in... 
 //////////////////////
+
+class nfossetStatus{
+  public:
+    StatusResult WaterFlowing;
+    StatusResult CurrentOn;
+    StatusResult SignalOn;
+    StatusResult CanRun;
+    StatusResult SuposeToRun;
+
+    StatusResult Short; 
+};
+
+nfossetStatus _NfossetStatus;
+
 void nfossetTest(){
   nfossetOpen();
   delay(500);
@@ -105,6 +119,7 @@ bool nfossetSuposeToRun(){
   return ((_NFossetManualRequest == FossetManualRequestValue::FossetAutomatic && nfossetCanRunVar) || _NFossetManualRequest == FossetManualRequestValue::Open);//complete by the enum     //c//
 }
 
+
 void cheeckStatus(){
   bool nfossetWaterFlowing = nfossetIsWaterFlowing();// Normal fosset
   bool nfossetCurrentOn = nfossetIsCurrentOn();
@@ -172,20 +187,7 @@ void cheeckStatus(){
   }
 }
 
-/// Not working right now ///
-class nfossetStatus{
-  public:
-    StatusResult WaterFlowing;
-    StatusResult CurrentOn;
-    StatusResult SignalOn;
-    StatusResult CanRun;
-    StatusResult SuposeToRun;
 
-    StatusResult Short; 
-  
-}
-
-nfossetStatus _NfossetStatus;
 /////////////////////////////////
 /// NORMAL FOSSET FLOW SENSOR ///
 /////////////////////////////////
@@ -219,4 +221,3 @@ bool nfossetIsCurrentOn(){
   int c = analogRead(NFOSSET_CURRENT_TEST_PIN);
   return c > 0; //Cheeks if the current is higer than 0. If its higer than 0 its true if not false.
 }
-*/

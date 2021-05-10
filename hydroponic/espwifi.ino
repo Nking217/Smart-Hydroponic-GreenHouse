@@ -150,9 +150,11 @@ void espSendGetRequest(String url){
   Serial3.print(END_OF_COMMAND_STRING);
 }
 
-void espSendPostRequest(String url, String data){
+void espSendPostRequest(long reqid, String url, String data){
   //~p<request url>$<data>$   
   Serial3.print("~p");
+  Serial3.print(reqid);
+  Serial3.print(END_OF_COMMAND_STRING);
   Serial3.print(url);
   Serial3.print(END_OF_COMMAND_STRING);
   Serial3.print(data);

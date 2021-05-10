@@ -4,6 +4,12 @@ struct StatusResult{
   String StatusText;
   int Status; //STATUS_OK, STATUS_WARNING, STATUS_ERROR
   int Priorty;  //PRIORITY_HIGH, PRIORITY_MEDIUM, PRIORITY_LOW
+  StatusResult()
+  {
+    StatusText = "";
+    Status = 0;
+    Priorty = 0;
+  }
   StatusResult(String statusText, int status, int priorty)
   {
     StatusText = statusText;
@@ -73,7 +79,6 @@ void ofossetOpen();
 void ofossetClose();
 void ofossetManualControl();
 bool ofossetCanRun();
-int _OfossetSignalOn;
 
 void ofossetFlowInit();
 void ofossetFlowTest();
