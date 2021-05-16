@@ -152,15 +152,15 @@ void mainLogic() //
 void test()
 {
 //  temperatuereTest();
-  ofossetTest();
-  nfossetTest();
-  pumpTest();
-  drainageTest();
-  turbidityTest();
-  waterHightTest();
-  pumpCurrentTest();
+//  ofossetTest();
+//  nfossetTest();
+//  pumpTest();
+//  drainageTest();
+//  turbidityTest();
+//  waterHightTest();
+//  pumpCurrentTest();
   lcdTest();
-  espTest();
+//  espTest();
 }
 
 void serialInit(){

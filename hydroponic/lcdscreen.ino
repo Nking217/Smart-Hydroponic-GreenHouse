@@ -4,7 +4,7 @@
 #include "ili9488.h"
 void lcdInit(){
   lcd.Init_LCD();
-  lcd.Fill_Screen(BLACK);
+  lcd.Fill_Screen(WHITE);
 }
 
 void lcdTest(){
@@ -21,65 +21,58 @@ void lcdShowState(){ //All the lcd screen stuff (idk).
 }
 
 void lcdShowHomeScreen(){
-  
   if (_Lcd_Status == LCD_PAGE_HOME){
     return;
   }
   _Lcd_Status = LCD_PAGE_HOME;
+  lcd.Set_Rotation(1);
   lcd.Set_Text_Size(4);
-  lcd.Print_String("Home Screen", 30, 4);
-  lcd.Draw_Fast_HLine(25,35,265); //make a line on the screen
-  /*lcd.Set_Text_Size(2);
-  lcd.gotoxy(5,40);
-  lcd.print("Status");
-  lcd.drawRect(5,60,150,180); //Status show area
+  lcd.Set_Text_colour(BLACK);
+  lcd.Set_Text_Back_colour(BLACK);
+  lcd.Print_String("Home Screen", 105, 4);
+  lcd.Set_Draw_color(BLACK);
+  lcd.Draw_Fast_HLine(105,35,265); //make a line on the screen
   lcd.Set_Text_Size(2);
-  lcd.gotoxy(10,65);
-  lcd.print("NFosset:");
-  lcd.gotoxy(10,84);
-  lcd.print("OFosset:");
-  lcd.gotoxy(10,103);
-  lcd.print("Pump:");
-  lcd.gotoxy(10,122);
-  lcd.print("Drainage:");
-  lcd.gotoxy(10,141);
-  lcd.print("Battery:");
-  lcd.gotoxy(10,160);
-  lcd.print("Water:");
-  */
+  lcd.Print_String("Status", 5, 45);
+  lcd.Draw_Rectangle(5,60,230,315);
+  lcd.Print_String("Nfosset:", 10, 65);
+  lcd.Print_String("Ofosset:", 10, 85);
+  lcd.Print_String("Pump:", 10, 105);
+  lcd.Print_String("Drainage:", 10, 125);
+  lcd.Print_String("Battery:", 10, 145);
+  lcd.Print_String("Water:", 10, 165);
 }
-
 
 /*
 void lcdShowHomeScreenStatus(){
   lcdWriteStatus(100, 65, _NfossetStatus.Short());
-  lcdWriteStatus(100, 84, ofossetStatus_Short());
-  lcdWriteStatus(100, 103, pumpStatus_Short());
-  lcdWriteStatus(100, 122, drainageStatus_Short());
-  lcdWriteStatus(100, 141, batteryStatus_Short());
+  lcdWriteStatus(100, 85, ofossetStatus_Short());
+  lcdWriteStatus(100, 105, pumpStatus_Short());
+  lcdWriteStatus(100, 125, drainageStatus_Short());
+  lcdWriteStatus(100, 145, batteryStatus_Short());
 }
+*/
 
-
-void lcdWriteStatus(int x, int y, StatusResult res)
-{
-  lcdChangeColor(res.Priorty);
+void lcdWriteStatus(int x, int y, StatusResult res){
+  lcd.Set_Text_colour(res.Priorty);
   print(x, y, res.StatusText);
 }
-void lcdChangeColor(int priorty)
-{
+
+
+void lcdChangeColor(int priorty){
   switch (priorty)
   {
     case STATUS_OK:
-      lcd.setColor(STATUS_OK_COLOR); 
+      lcd.Set_Text_colour(STATUS_OK_COLOR); 
       break;
     case STATUS_WARNING:
-      lcd.setColor(STATUS_WARNING_COLOR); 
+      lcd.Set_Text_colour(STATUS_WARNING_COLOR); 
       break;
     case STATUS_ERROR:
-      lcd.setColor(STATUS_ERROR_COLOR);
+      lcd.Set_Text_colour(STATUS_ERROR_COLOR);
       break;
     default:
-      lcd.setColor(STATUS_NORMAL_COLOR);
+      lcd.Set_Text_colour(STATUS_NORMAL_COLOR);
       break;
   }
 }
@@ -91,9 +84,6 @@ void lcdShowSetupScreen(){
   
 }
 
-void print(int x, int y, String text)
-{
-  lcd.gotoxy(x, y);
-  lcd.print((char*)text.c_str());
+void print(int x, int y, String text){
+  lcd.Print_String(text, x, y); 
 }
-*/
