@@ -2,8 +2,10 @@
 /// LCD SCREEN ///
 //////////////////
 #include "ili9488.h"
+#include "ili9488_touch.h"
 void lcdInit(){
   lcd.Init_LCD();
+  lcdT.TP_Init();
   lcd.Fill_Screen(WHITE);
 }
 
@@ -20,6 +22,9 @@ void lcdShowState(){ //All the lcd screen stuff (idk).
   
 }
 
+/////////////////
+//-Home Screen-//
+/////////////////
 void lcdShowHomeScreen(){
   if (_Lcd_Status == LCD_PAGE_HOME){
     return;
@@ -41,8 +46,43 @@ void lcdShowHomeScreen(){
   lcd.Print_String("Drainage:", 10, 125);
   lcd.Print_String("Battery:", 10, 145);
   lcd.Print_String("Water:", 10, 165);
+  lcd.Print_String("Drainage:", 10, 185);
+  lcd.Print_String("Temprature:", 10, 205);
+  lcd.Print_String("Humidity:", 10, 225);
+  lcd.Print_String("WI-FI:", 10, 245);
+  lcd.Print_String("Server:", 10, 265);
+  //Buttons
+  lcd.Set_Text_Size(4);
+ // lcd.Draw_Rectangle(240,60,470,130);
+ // lcd.Print_String("Status", 280,83);
+  statusScreenButton();
+  lcd.Draw_Rectangle(240,140,470,210);
+  lcd.Print_String("Config", 280,160);
+  
+  lcd.Draw_Rectangle(240,220,470,290);
+  lcd.Print_String("About", 280,240);
+  lcd.Set_Text_Size(2);
 }
 
+void statusScreenButton(){ //Status screen button 240,60,470,130
+  lcd.Set_Text_Size(4);
+  lcd.Draw_Rectangle(240,60,470,130);
+  lcd.Print_String("Status", 280,83);
+
+  if(lcdT.TP_Scan()){
+    int X = lcdT.getX();
+    int Y = lcdT.getY();
+
+    
+  }
+  /*
+  if(_Xtouch >= 240 && _Xtouch <= 470){
+    if(_Ytouch >= 60 && _Ytouch <= 130){
+      Serial.println("Hello");
+    }
+  }
+  */
+}
 
 void lcdShowHomeScreenStatus(){
   lcdWriteStatus(105, 65, _NfossetStatus.Short);
@@ -52,10 +92,26 @@ void lcdShowHomeScreenStatus(){
  // lcdWriteStatus(100, 145, batteryStatus_Short());
 }
 
+///////////////////
+//-Status Screen-//
+///////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 void lcdWriteStatus(int x, int y, StatusResult res){
   lcd.Set_Text_Back_colour(WHITE);
-  Serial.println(res.StatusText);
+  //Serial.println(res.StatusText);
   lcdChangeColor(res.Status);
   print(x, y, res.StatusText);
 }
@@ -66,19 +122,19 @@ void lcdChangeColor(int status){
   {
     case STATUS_OK:
       lcd.Set_Text_colour(STATUS_OK_COLOR);
-      Serial.print("Ok"); 
+      //Serial.print("Ok"); 
       break;
     case STATUS_WARNING:
       lcd.Set_Text_colour(STATUS_WARNING_COLOR);
-      Serial.print("Warning"); 
+      //Serial.print("Warning"); 
       break;
     case STATUS_ERROR:
       lcd.Set_Text_colour(STATUS_ERROR_COLOR);
-      Serial.print("Error");
+      //Serial.print("Error");
       break;
     default:
       lcd.Set_Text_colour(STATUS_NORMAL_COLOR);
-      Serial.print("Normal");
+      //Serial.print("Normal");
       break;
   }
 }

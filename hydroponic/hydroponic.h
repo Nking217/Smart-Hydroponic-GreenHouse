@@ -52,6 +52,23 @@ class ofossetStatus{
 
 ofossetStatus _OfossetStatus;
 
+///////////////////
+/// Pump Status ///
+///////////////////
+
+class pumpStatus{
+  public:
+    StatusResult WaterFlowing;
+    StatusResult CurrentOn;
+    StatusResult SignalOn;
+    StatusResult CanRun;
+    StatusResult SuposeToRun;
+
+    StatusResult Short;
+    
+};
+
+pumpStatus _PumpStatus;
 ///////////////////////////
 // function declarations //
 ///////////////////////////

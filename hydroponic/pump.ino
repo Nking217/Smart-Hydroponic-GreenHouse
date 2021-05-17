@@ -13,11 +13,11 @@ void pumpInit(){
 
 void pumpStart(){
   digitalWrite(PUMP_PIN, HIGH);
-  _IsPumpRunning = true;
+  _IsPumpRunning = 1;
 }
 void pumpStop(){
   digitalWrite(PUMP_PIN, LOW);
-  _IsPumpRunning = false;
+  _IsPumpRunning = 0;
 }
 
 void pumpManualControl(PumpManualRequestValue value){
@@ -49,6 +49,15 @@ bool pumpCanRun(){
     return true;   
   else
     return false;
+}
+
+bool pumpIsSignalOn(){
+  if(_IsPumpRunning == 1){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 /*
 StatusResult pumpStatus_Short(){
@@ -105,10 +114,23 @@ StatusResult pumpStatus_Short(){
   }
 }
 */
-String pumpStatus_Long()
-{
+
+bool pumpSuposeToRun(){
+  return((_PumpManualRequest == PumpManualRequestValue::PumpAutomatic && pumpCanRun()) || _PumpManualRequest == PumpManualRequestValue::Start);
+}
+/*
+void pumpCheeckStatus(){
+  bool pumpWaterFlowing = pumpIsWaterFlowing();
+  bool pumpCurrentOn = pumpIsCurrentOn();
+  bool pumpSignalOn = pumpIsSignalOn();
+  bool pumpSuposeToRunVar = pumpSuposeToRun();
+
+  int h = waterHightRead();
+
   
 }
+*/
+
 
 ///////////////////////////
 /// PUMP CURRENT SENSOR ///
@@ -124,7 +146,7 @@ void pumpCurrentTest(){
   //Serial.println(pumpCurrentRead());
 }
 
-bool pumpIsRunning(){
+bool pumpIsCurrentOn(){
   int c = analogRead(PUMP_CURRENT_TEST_PIN);
   return c > 0; //Cheeks if the current is higer than 0. If its higer than 0 its true if not false.
 }
