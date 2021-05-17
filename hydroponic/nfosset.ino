@@ -1,7 +1,7 @@
 //////////////////////
 /// NORMAL FOSSET  /// - Water in... 
 //////////////////////
-
+/*
 class nfossetStatus{
   public:
     StatusResult WaterFlowing;
@@ -10,11 +10,16 @@ class nfossetStatus{
     StatusResult CanRun;
     StatusResult SuposeToRun;
 
-    StatusResult Short; 
+    StatusResult Short;
+
+    String getShortString(){
+      
+    }
+
 };
 
 nfossetStatus _NfossetStatus;
-
+*/
 void nfossetTest(){
   nfossetOpen();
   delay(500);
@@ -120,14 +125,14 @@ bool nfossetSuposeToRun(){
 }
 
 
-void cheeckStatus(){
-  bool nfossetWaterFlowing = nfossetIsWaterFlowing();// Normal fosset
+void nfossetCheeckStatus(){
+  bool nfossetWaterFlowing = nfossetIsWaterFlowing();
   bool nfossetCurrentOn = nfossetIsCurrentOn();
   bool nfossetSignalOn = nfossetIsSignalOn();
   bool nfossetSuposeToRunVar = nfossetSuposeToRun();
-  
+
   int h = waterHightRead();
-  
+
   if(h >= MAXIMUM_WATER_IN_TANK){ //If the water levle is the maximum levle for the tank, the fosset will be closed.
     if(nfossetSignalOn){
       _NfossetStatus.SignalOn = StatusResult("Error: Fosset signal pin on while water levle too high", STATUS_ERROR, PRIORITY_HIGH);
@@ -139,32 +144,59 @@ void cheeckStatus(){
     }
   }
   else{
-    if(nfossetSuposeToRun && !nfossetSignalOn){
-      _NfossetStatus.SignalOn = StatusResult("Error: Fosset signal pin off while water levle is low", STATUS_ERROR, PRIORITY_MEDIUM);
-      _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_MEDIUM);
-    }
-    else{
-      _NfossetStatus.SignalOn = StatusResult("On: Fosset signal pin on", STATUS_OK, PRIORITY_LOW);
-      _NfossetStatus.Short = StatusResult("On", STATUS_OK, PRIORITY_LOW);
+    if(nfossetSuposeToRun){
+      if(!nfossetSignalOn){
+        if(h > MINIMUM_WATER_FOR_PUMP){
+          _NfossetStatus.SignalOn = StatusResult("Warning: Fosset signal pin off while water levle is low", STATUS_WARNING, PRIORITY_MEDIUM);
+          _NfossetStatus.Short = StatusResult("Warning", STATUS_WARNING, PRIORITY_MEDIUM);
+        }
+        else{
+          _NfossetStatus.SignalOn = StatusResult("Error: Fosset signal pin off while water levle is under pump minimum", STATUS_ERROR, PRIORITY_HIGH);
+          _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_HIGH);
+        }
+      }
+      else{
+        _NfossetStatus.SignalOn = StatusResult("On: Fosset signal pin on", STATUS_OK, PRIORITY_LOW);
+        _NfossetStatus.Short = StatusResult("On", STATUS_OK, PRIORITY_LOW);
+      }
     }
   }
-  
+    
+    
   if(nfossetSignalOn){
      if(!nfossetWaterFlowing){
-        _NfossetStatus.WaterFlowing = StatusResult("Error: Water not flowing while signal pin is on.", STATUS_ERROR, PRIORITY_MEDIUM);
-        _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_MEDIUM);
+        if(h > MINIMUM_WATER_FOR_PUMP){
+          _NfossetStatus.WaterFlowing = StatusResult("Warning: Water not flowing while signal pin is on", STATUS_WARNING, PRIORITY_MEDIUM);
+          _NfossetStatus.Short = StatusResult("Warning", STATUS_WARNING, PRIORITY_MEDIUM);
+        }
+        else{
+          _NfossetStatus.WaterFlowing = StatusResult("Error: Water not flowing while water levle is under pump minimum", STATUS_ERROR, PRIORITY_HIGH);
+          _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_HIGH);
+        }
      }
      else{
         _NfossetStatus.WaterFlowing = StatusResult("On: Water flowing", STATUS_OK, PRIORITY_LOW);
-        _NfossetStatus.Short = StatusResult("On", STATUS_OK, PRIORITY_LOW);
+        if(_NfossetStatus.Short.Status == STATUS_OK){
+          _NfossetStatus.Short = StatusResult("On", STATUS_OK, PRIORITY_LOW);
+        }
      }
      if(!nfossetCurrentOn){
-        _NfossetStatus.CurrentOn = StatusResult("Error: No current while signal pin is on", STATUS_ERROR, PRIORITY_MEDIUM);
-        _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_MEDIUM);
+        if(h > MINIMUM_WATER_FOR_PUMP){
+          _NfossetStatus.CurrentOn = StatusResult("Warning: No current while signal pin is on", STATUS_WARNING, PRIORITY_MEDIUM);
+          if(_NfossetStatus.Short.Status != STATUS_ERROR){
+            _NfossetStatus.Short = StatusResult("Warning", STATUS_WARNING, PRIORITY_MEDIUM);
+          }
+        }
+        else{
+          _NfossetStatus.CurrentOn = StatusResult("Error: No current while water levle is under pump minimum", STATUS_ERROR, PRIORITY_HIGH);
+          _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_HIGH);
+        }
      }
      else{
         _NfossetStatus.CurrentOn = StatusResult("Current on", STATUS_OK, PRIORITY_LOW);
-        _NfossetStatus.Short = StatusResult("On", STATUS_OK, PRIORITY_LOW);
+        if(_NfossetStatus.Short.Status == STATUS_OK){
+          _NfossetStatus.Short = StatusResult("On", STATUS_OK, PRIORITY_LOW);
+        }
      }
   }
   else{
@@ -173,8 +205,10 @@ void cheeckStatus(){
         _NfossetStatus.Short = StatusResult("Error", STATUS_ERROR, PRIORITY_HIGH);
      }
      else{
-        _NfossetStatus.WaterFlowing = StatusResult("No warer flowing", STATUS_OK, PRIORITY_LOW);
-        _NfossetStatus.Short = StatusResult("Off", STATUS_OK, PRIORITY_LOW);
+        _NfossetStatus.WaterFlowing = StatusResult("No water flowing", STATUS_OK, PRIORITY_LOW);
+        if(_NfossetStatus.Short.Status == STATUS_OK){
+          _NfossetStatus.Short = StatusResult("Off", STATUS_OK, PRIORITY_LOW);
+        }
      }
      if(nfossetCurrentOn){
         _NfossetStatus.CurrentOn = StatusResult("Error: Fosset has current while signal pin is off", STATUS_ERROR, PRIORITY_HIGH);
@@ -182,10 +216,13 @@ void cheeckStatus(){
      }
      else{
         _NfossetStatus.CurrentOn = StatusResult("No current", STATUS_OK, PRIORITY_LOW);
-        _NfossetStatus.Short = StatusResult("Off", STATUS_OK, PRIORITY_LOW);
+        if(_NfossetStatus.Short.Status == STATUS_OK){
+          _NfossetStatus.Short = StatusResult("Off", STATUS_OK, PRIORITY_LOW);
+        }
      }
   }
 }
+
 
 
 /////////////////////////////////

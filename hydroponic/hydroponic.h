@@ -14,10 +14,43 @@ struct StatusResult{
   {
     StatusText = statusText;
     Priorty = priorty;
+    Status = status;
   }
 };
 
+////////////////////////////
+/// Normal Fosset Status ///
+////////////////////////////
+class nfossetStatus{
+  public:
+    StatusResult WaterFlowing;
+    StatusResult CurrentOn;
+    StatusResult SignalOn;
+    StatusResult CanRun;
+    StatusResult SuposeToRun;
 
+    StatusResult Short;
+};
+
+nfossetStatus _NfossetStatus;
+
+
+/////////////////////////////
+/// Osmotic Fosset Status ///
+/////////////////////////////
+
+class ofossetStatus{
+  public:
+    StatusResult WaterFlowing;
+    StatusResult CurrentOn;
+    StatusResult SignalOn;
+    StatusResult CanRun;
+    StatusResult SuposeToRun;
+
+    StatusResult Short;    
+};
+
+ofossetStatus _OfossetStatus;
 
 ///////////////////////////
 // function declarations //

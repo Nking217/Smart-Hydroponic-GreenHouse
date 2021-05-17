@@ -9,7 +9,7 @@ void lcdInit(){
 
 void lcdTest(){
   lcdShowHomeScreen();
- // lcdShowHomeScreenStatus();
+  lcdShowHomeScreenStatus();
 }
 
 void lcdNotifyError(String error){
@@ -43,36 +43,42 @@ void lcdShowHomeScreen(){
   lcd.Print_String("Water:", 10, 165);
 }
 
-/*
+
 void lcdShowHomeScreenStatus(){
-  lcdWriteStatus(100, 65, _NfossetStatus.Short());
-  lcdWriteStatus(100, 85, ofossetStatus_Short());
-  lcdWriteStatus(100, 105, pumpStatus_Short());
-  lcdWriteStatus(100, 125, drainageStatus_Short());
-  lcdWriteStatus(100, 145, batteryStatus_Short());
+  lcdWriteStatus(105, 65, _NfossetStatus.Short);
+  lcdWriteStatus(105, 85, _OfossetStatus.Short);
+  //lcdWriteStatus(100, 105, pumpStatus_Short());
+ // lcdWriteStatus(100, 125, drainageStatus_Short());
+ // lcdWriteStatus(100, 145, batteryStatus_Short());
 }
-*/
+
 
 void lcdWriteStatus(int x, int y, StatusResult res){
-  lcd.Set_Text_colour(res.Priorty);
+  lcd.Set_Text_Back_colour(WHITE);
+  Serial.println(res.StatusText);
+  lcdChangeColor(res.Status);
   print(x, y, res.StatusText);
 }
 
 
-void lcdChangeColor(int priorty){
-  switch (priorty)
+void lcdChangeColor(int status){
+  switch (status)
   {
     case STATUS_OK:
-      lcd.Set_Text_colour(STATUS_OK_COLOR); 
+      lcd.Set_Text_colour(STATUS_OK_COLOR);
+      Serial.print("Ok"); 
       break;
     case STATUS_WARNING:
-      lcd.Set_Text_colour(STATUS_WARNING_COLOR); 
+      lcd.Set_Text_colour(STATUS_WARNING_COLOR);
+      Serial.print("Warning"); 
       break;
     case STATUS_ERROR:
       lcd.Set_Text_colour(STATUS_ERROR_COLOR);
+      Serial.print("Error");
       break;
     default:
       lcd.Set_Text_colour(STATUS_NORMAL_COLOR);
+      Serial.print("Normal");
       break;
   }
 }

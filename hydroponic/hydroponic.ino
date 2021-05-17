@@ -26,7 +26,7 @@
 //ESP TX Pin 14, ESP RX Pin 15
 
 #define ERROR -1
-#define MINIMUM_WATER_FOR_PUMP 20
+#define MINIMUM_WATER_FOR_PUMP 20 //MINIMUM_WATER_IN_TANK
 #define MAXIMUM_WATER_IN_TANK 100
 
 #define LCD_PAGE_HOME 1 //
@@ -97,6 +97,8 @@ void setup(){
 
 void loop()
 {
+  nfossetCheeckStatus();
+  ofossetCheeckStatus();
   test();
   //mainLogic(); //Automation 
   }
