@@ -42,12 +42,12 @@ void nfossetClose(){
 void nfossetManualControl(FossetManualRequestValue value){
   switch (value)
   {
-    case FossetManualRequestValue::Close:{
+    case FossetManualRequestValue::FossetClose:{
       _NFossetManualRequest = value;
       nfossetClose();
       break;
     }
-    case FossetManualRequestValue::Open:{
+    case FossetManualRequestValue::FossetOpen:{
       if(nfossetCanRun()){ //If the water levle is not the maximum the nfosset will be open.
         _NFossetManualRequest = value;
         nfossetOpen();
@@ -121,11 +121,11 @@ StatusResult nfossetStatus_Short(){ //// Short Status - old code ////
 bool nfossetCanRunVar = nfossetCanRun();
 
 bool nfossetSuposeToRun(){
-  return ((_NFossetManualRequest == FossetManualRequestValue::FossetAutomatic && nfossetCanRunVar) || _NFossetManualRequest == FossetManualRequestValue::Open);//complete by the enum     //c//
+  return ((_NFossetManualRequest == FossetManualRequestValue::FossetAutomatic && nfossetCanRunVar) || _NFossetManualRequest == FossetManualRequestValue::FossetOpen);//complete by the enum     //c//
 }
 
 
-void nfossetCheeckStatus(){
+void nfossetCheckStatus(){
   bool nfossetWaterFlowing = nfossetIsWaterFlowing();
   bool nfossetCurrentOn = nfossetIsCurrentOn();
   bool nfossetSignalOn = nfossetIsSignalOn();
@@ -222,7 +222,6 @@ void nfossetCheeckStatus(){
      }
   }
 }
-
 
 
 /////////////////////////////////

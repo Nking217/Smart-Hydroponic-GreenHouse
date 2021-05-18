@@ -38,12 +38,12 @@ void ofossetClose(){
 void ofossetManualControl(FossetManualRequestValue value){
   switch (value)
   {
-    case FossetManualRequestValue::Close:{
+    case FossetManualRequestValue::FossetClose:{
       _OFossetManualRequest = value;
       ofossetClose();
       break;
     }
-    case FossetManualRequestValue::Open:{
+    case FossetManualRequestValue::FossetOpen:{
       if(ofossetCanRun()){ //If the water levle is not the maximum the fosset will be open.
         _OFossetManualRequest = value;
         ofossetOpen();
@@ -118,11 +118,11 @@ StatusResult ofossetStatus_Short(){
 //bool ofossetCanRunVar = ofossetCanRun();
 
 bool ofossetSuposeToRun(){
-  return ((_OFossetManualRequest == FossetManualRequestValue::FossetAutomatic && ofossetCanRun()) || _OFossetManualRequest == FossetManualRequestValue::Open);  //complete by the enum
+  return ((_OFossetManualRequest == FossetManualRequestValue::FossetAutomatic && ofossetCanRun()) || _OFossetManualRequest == FossetManualRequestValue::FossetOpen);  //complete by the enum
 }
 
 
-void ofossetCheeckStatus(){
+void ofossetCheckStatus(){
   bool ofossetWaterFlowing = ofossetIsWaterFlowing();
   bool ofossetCurrentOn = ofossetIsCurrentOn();
   bool ofossetSignalOn = ofossetIsSignalOn();

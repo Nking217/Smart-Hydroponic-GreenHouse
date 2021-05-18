@@ -69,6 +69,45 @@ class pumpStatus{
 };
 
 pumpStatus _PumpStatus;
+
+///////////////////////
+/// Drainage Status ///
+///////////////////////
+
+class drainageStatus{
+  public:
+    StatusResult SignalOn;
+
+    StatusResult Short;
+};
+
+drainageStatus _DrainageStatus;
+
+//////////////////////
+/// Battery Status ///
+//////////////////////
+
+class batteryStatus{
+  public:
+    StatusResult Voltage;
+    
+    StatusResult Short;
+};
+
+batteryStatus _BatteryStatus;
+
+//////////////////////////
+/// Water Hight Status ///
+//////////////////////////
+
+class waterHightStatus{
+  public:
+    StatusResult WaterLevle;
+
+    StatusResult Short;
+};
+
+waterHightStatus _WaterHightStatus;
 ///////////////////////////
 // function declarations //
 ///////////////////////////

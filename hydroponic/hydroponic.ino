@@ -54,21 +54,26 @@
 #define STATUS_WARNING_COLOR YELLOW
 #define STATUS_ERROR_COLOR RED
 
-
+enum DrainageManualRequestValue{
+  DrainageOpen,
+  DrainageClose,
+  DrainageAutomatic
+};
 
 enum FossetManualRequestValue{
-  Open,
-  Close,
+  FossetOpen,
+  FossetClose,
   FossetAutomatic
 };
 
 enum PumpManualRequestValue{
-  Start,
-  Stop,
+  PumpStart,
+  PumpStop,
   PumpAutomatic
 };
 
 //M2M_LM75A _Lm75a; //Temp Sensor
+DrainageManualRequestValue _DrainageManualRequest;
 
 FossetManualRequestValue _OFossetManualRequest;
 FossetManualRequestValue _NFossetManualRequest;
@@ -93,15 +98,19 @@ void setup(){
   lcdInit();
   espInit();
   eepromInit();
+  lcdShowHomeScreen();
 }
 
-void loop()
-{
-  nfossetCheeckStatus();
-  ofossetCheeckStatus();
-  test();
+void loop(){
+  nfossetCheckStatus();
+  ofossetCheckStatus();
+  pumpCheckStatus();
+  drainageCheckStatus();
+  batteryCheckStatus();
+  lcdShowHomeScreenStatus();
+  lcdHandleTouch();
   //mainLogic(); //Automation 
-  }
+}
 
 
 
@@ -161,7 +170,7 @@ void test()
 //  turbidityTest();
 //  waterHightTest();
 //  pumpCurrentTest();
-  lcdTest();
+//  lcdTest();
 //  espTest();
 }
 

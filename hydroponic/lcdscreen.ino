@@ -53,28 +53,40 @@ void lcdShowHomeScreen(){
   lcd.Print_String("Server:", 10, 265);
   //Buttons
   lcd.Set_Text_Size(4);
- // lcd.Draw_Rectangle(240,60,470,130);
- // lcd.Print_String("Status", 280,83);
-  statusScreenButton();
+  lcd.Draw_Rectangle(240,60,470,130);
+  lcd.Print_String("Status", 280,83);
+  
   lcd.Draw_Rectangle(240,140,470,210);
   lcd.Print_String("Config", 280,160);
   
   lcd.Draw_Rectangle(240,220,470,290);
   lcd.Print_String("About", 280,240);
   lcd.Set_Text_Size(2);
+  
+  lcdHandleTouch();
 }
 
-void statusScreenButton(){ //Status screen button 240,60,470,130
-  lcd.Set_Text_Size(4);
-  lcd.Draw_Rectangle(240,60,470,130);
-  lcd.Print_String("Status", 280,83);
-
+void lcdHandleTouch(){
   if(lcdT.TP_Scan()){
-    int X = lcdT.getX();
-    int Y = lcdT.getY();
-
-    
+    int x = lcdT.getX();
+    int y = lcdT.getY();
+    if(_Lcd_Status == LCD_PAGE_HOME){
+      if(x >= 240 && x <= 470 && y >= 60 && y <= 130){ //Status Screen button 240,60,470,130
+        Serial.println("Status");
+        lcdShowStatusScreen();
+      }
+      if(x >= 240 && x <= 470 && y >= 140 && y <= 210){ //Configuration Screen Button  240,140,470,210
+        Serial.println("Config");
+        lcdShowConfigScreen();
+      }
+      if(x >= 240 && x <= 470 && y >= 220 && y <= 290){ //About Screen Button 240,220,470,290
+        Serial.println("About");
+        lcdShowAboutScreen();
+      }
+    }
   }
+
+  
   /*
   if(_Xtouch >= 240 && _Xtouch <= 470){
     if(_Ytouch >= 60 && _Ytouch <= 130){
@@ -84,25 +96,39 @@ void statusScreenButton(){ //Status screen button 240,60,470,130
   */
 }
 
-void lcdShowHomeScreenStatus(){
+void lcdShowHomeScreenStatus(){ //Status text blinking fix this TO:DO
+  lcd.Print_String("       ", 105, 65);
   lcdWriteStatus(105, 65, _NfossetStatus.Short);
+  lcd.Print_String("       ", 105, 85);
   lcdWriteStatus(105, 85, _OfossetStatus.Short);
-  //lcdWriteStatus(100, 105, pumpStatus_Short());
- // lcdWriteStatus(100, 125, drainageStatus_Short());
- // lcdWriteStatus(100, 145, batteryStatus_Short());
+  lcd.Print_String("       ", 105, 105);
+  lcdWriteStatus(100, 105, _PumpStatus.Short);
+  lcd.Print_String("       ", 105, 125);
+  lcdWriteStatus(100, 125, _DrainageStatus.Short);
+  lcd.Print_String("       ", 105, 145);
+  lcdWriteStatus(100, 145, _BatteryStatus.Short);
+  lcd.Print_String("       ", 105, 165);
+  lcdWriteStatus(100, 165, _WaterHightStatus.Short);
+  
 }
 
-///////////////////
-//-Status Screen-//
-///////////////////
+void lcdShowStatusScreen(){
+  
+}
+
+void lcdShowStatusScreenStatus(){
+  
+}
 
 
+void lcdShowConfigScreen(){
+  
+}
 
 
-
-
-
-
+void lcdShowAboutScreen(){
+  
+}
 
 
 
@@ -138,13 +164,7 @@ void lcdChangeColor(int status){
       break;
   }
 }
-void lcdShowStatusScreen(){
-  
-}
 
-void lcdShowSetupScreen(){
-  
-}
 
 void print(int x, int y, String text){
   lcd.Print_String(text, x, y); 
