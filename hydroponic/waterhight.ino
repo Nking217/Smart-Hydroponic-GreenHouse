@@ -35,3 +35,8 @@ int waterHightRead(){
     return ERROR;
   }
 }
+
+
+void waterHightCheckStatus(){
+  
+}

@@ -1,6 +1,6 @@
 //#include <dht.h>
-#include "dht.h"
-dht DHT;
+#include "DHT.h"
+
 
 
 #include "hydroponic.h"
@@ -20,7 +20,7 @@ dht DHT;
 #define WATER_HIGH_SWITCH_PIN 12
 #define WATER_LOW_SWITCH_PIN 11
 #define TURBIDITY_PIN A2
-#define DHT11_PIN A10
+#define TEMPRATURE_SENSOR1_PIN A10
 #define TEMPRATURE_SENSOR2_PIN A11
 #define TEMPRATURE_SENSOR3_PIN A12
 #define LIGHT_SENSOR1_PIN A3
