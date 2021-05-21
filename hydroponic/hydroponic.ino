@@ -1,4 +1,7 @@
 //#include <dht.h>
+#include "dht.h"
+dht DHT;
+
 
 #include "hydroponic.h"
 #include "ili9488.h"
@@ -17,9 +20,9 @@
 #define WATER_HIGH_SWITCH_PIN 12
 #define WATER_LOW_SWITCH_PIN 11
 #define TURBIDITY_PIN A2
-#define TEMPRATURE_SENSOR1_PIN 22
-#define TEMPRATURE_SENSOR2_PIN 23
-#define TEMPRATURE_SENSOR3_PIN 24
+#define DHT11_PIN A10
+#define TEMPRATURE_SENSOR2_PIN A11
+#define TEMPRATURE_SENSOR3_PIN A12
 #define LIGHT_SENSOR1_PIN A3
 #define LIGHT_SENSOR2_PIN A7
 #define LIGHT_SENSOR3_PIN A8
@@ -109,6 +112,7 @@ void loop(){
   batteryCheckStatus();
   lcdShowHomeScreenStatus();
   lcdHandleTouch();
+  test();
   //mainLogic(); //Automation 
 }
 
@@ -162,7 +166,7 @@ void mainLogic() //
 
 void test()
 {
-//  temperatuereTest();
+  tempratureTest();
 //  ofossetTest();
 //  nfossetTest();
 //  pumpTest();
