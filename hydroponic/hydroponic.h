@@ -56,7 +56,7 @@ ofossetStatus _OfossetStatus;
 /// Pump Status ///
 ///////////////////
 
-class pumpStatus{
+class PumpStatus{
   public:
     StatusResult WaterFlowing;
     StatusResult CurrentOn;
@@ -68,46 +68,78 @@ class pumpStatus{
     
 };
 
-pumpStatus _PumpStatus;
+PumpStatus _PumpStatus;
 
 ///////////////////////
 /// Drainage Status ///
 ///////////////////////
 
-class drainageStatus{
+class DrainageStatus{
   public:
     StatusResult SignalOn;
 
     StatusResult Short;
 };
 
-drainageStatus _DrainageStatus;
+DrainageStatus _DrainageStatus;
 
 //////////////////////
 /// Battery Status ///
 //////////////////////
 
-class batteryStatus{
+class BatteryStatus{
   public:
     StatusResult Voltage;
     
     StatusResult Short;
 };
 
-batteryStatus _BatteryStatus;
+BatteryStatus _BatteryStatus;
 
 //////////////////////////
 /// Water Hight Status ///
 //////////////////////////
 
-class waterHightStatus{
+class WaterHightStatus{
   public:
     StatusResult WaterLevle;
 
     StatusResult Short;
 };
 
-waterHightStatus _WaterHightStatus;
+WaterHightStatus _WaterHightStatus;
+
+/////////////////////////
+/// Temprature Status ///
+/////////////////////////
+
+class TempratureStatus{
+  public:
+    StatusResult Temprature1;
+    StatusResult Temprature2;
+    StatusResult Temprature3;
+    
+    StatusResult Short;
+   
+};
+
+TempratureStatus _TempratureStatus;
+
+/////////////////////////
+/// Humidity Status ///
+/////////////////////////
+
+class HumidityStatus{
+  public:
+    StatusResult Humidity1;
+    StatusResult Humidity2;
+    StatusResult Humidity3;
+
+    StatusResult Short;
+   
+};
+
+HumidityStatus _HumidityStatus;
 ///////////////////////////
 // function declarations //
 ///////////////////////////

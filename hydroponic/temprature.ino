@@ -4,32 +4,85 @@
 
 #define DHTTYPE DHT11
 
-DHT dht1(TEMPRATURE_SENSOR1_PIN, DHTTYPE);
-DHT dht2(TEMPRATURE_SENSOR2_PIN, DHTTYPE);
-DHT dht3(TEMPRATURE_SENSOR3_PIN, DHTTYPE);
+DHT* _TempHumiSensors[3];
 
 
 void tempratureSensorInit(){
-  dht.begin();
+  _TempHumiSensors[0] = new DHT(TEMPRATURE_SENSOR1_PIN, DHTTYPE);
+  _TempHumiSensors[1] = new DHT(TEMPRATURE_SENSOR2_PIN, DHTTYPE);
+  _TempHumiSensors[2] = new DHT(TEMPRATURE_SENSOR3_PIN, DHTTYPE);
+  
+  _TempHumiSensors[0]->begin();
+  _TempHumiSensors[1]->begin();
+  _TempHumiSensors[2]->begin();
 }
 
 void tempratureTest(){
-  float humi1  = dht1.readHumidity();
-  float tempC1 = dht1.readTemperature();
+  for(int i = 1; i <= 3; i++){
+     float humi  = getHumidity(i);
+     float tempC = getTemprature(i);
 
-  float humi2  = dht2.readHumidity();
-  float tempC2 = dht2.readTemperature();
+     Serial.print("Humidity: ");
+     Serial.print(humi);
+     Serial.print("%");
+ 
+     Serial.print("  |  "); 
 
-  float humi3  = dht3.readHumidity();
-  float tempC3 = dht3.readTemperature();
+     Serial.print("Temperature: ");
+     Serial.print(tempC);
+     Serial.print("°C ~ ");
+  }
+}
 
-  Serial.print("Humidity: ");
-  Serial.print(humi1);
-  Serial.print("%");
+float getTemprature(byte sensorId){
+  return _TempHumiSensors[sensorId-1]->readTemperature();
+}
 
-  Serial.print("  |  "); 
+float getHumidity(byte sensorId){
+  return _TempHumiSensors[sensorId-1]->readHumidity();
+}
 
-  Serial.print("Temperature: ");
-  Serial.print(tempC1);
-  Serial.print("°C ~ ");
+void tempratureCheckStatus(){
+  float temprature1 = getTemprature(1);
+  float temprature2 = getTemprature(2);
+  float temprature3 = getTemprature(3);
+
+  float avgTemprature = temprature1 + temprature2 + temprature3 / 3;
+  
+  _TempratureStatus.Temprature1 = getTempratureStatusResult(temprature1,false);
+  _TempratureStatus.Temprature2 = getTempratureStatusResult(temprature2,false);
+  _TempratureStatus.Temprature3 = getTempratureStatusResult(temprature3,false);
+
+  _TempratureStatus.Short = getTempratureStatusResult(avgTemprature, true);
+}
+
+StatusResult getTempratureStatusResult(float value, bool shortStatus){
+  
+  char buffer[80];
+
+  if(shortStatus) sprintf(buffer, "%f2°C", value);
+    
+  if (value > MAXIMUM_TEMPRATURE_FOR_ERROR){
+    if(!shortStatus) sprintf(buffer, "Error, Temprature %f2°C is too high", value); 
+    return StatusResult(String(buffer), STATUS_ERROR, PRIORITY_HIGH);
+  }
+  else if(value > MAXIMUM_TEMPRATURE_FOR_WARNING){
+    if(!shortStatus) sprintf(buffer, "Warning, Temprature %f2°C is high", value); 
+    return StatusResult(String(buffer), STATUS_WARNING, PRIORITY_MEDIUM);
+  }
+  else if(value < MINIMUM_TEMPRATURE_FOR_ERROR){
+    if(!shortStatus) sprintf(buffer, "Warning, Temprature %f2°C is high", value); 
+    return StatusResult(String(buffer), STATUS_ERROR, PRIORITY_HIGH);
+  }
+  else if(value < MINIMUM_TEMPRATURE_FOR_WARNING){
+    if(!shortStatus) sprintf(buffer, "Warning, Temprature %f2°C is low", value); 
+    return StatusResult(String(buffer), STATUS_WARNING, PRIORITY_MEDIUM);
+  }
+  else{
+    return StatusResult(String(buffer), STATUS_OK, PRIORITY_LOW);
+  }
+}
+
+void humidityCheckStatus(){ //todo
+  
 }
