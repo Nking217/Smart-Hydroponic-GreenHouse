@@ -62,6 +62,11 @@
 #define MAXIMUM_TEMPRATURE_FOR_WARNING 32
 #define MAXIMUM_TEMPRATURE_FOR_ERROR 40
 
+#define MINIMUM_HUMIDITY_FOR_WARNING 50
+#define MINIMUM_HUMIDITY_FOR_ERROR 30
+#define MAXIMUM_HUMIDITY_FOR_WARNING 90
+#define MAXIMUM_HUMIDITY_FOR_ERROR 95
+
 
 enum DrainageManualRequestValue{
   DrainageOpen,
@@ -116,9 +121,12 @@ void loop(){
   pumpCheckStatus();
   drainageCheckStatus();
   batteryCheckStatus();
+  //tempratureCheckStatus();
+  //humidityCheckStatus();
   lcdShowHomeScreenStatus();
   lcdHandleTouch();
   test();
+  
   //mainLogic(); //Automation 
 }
 

@@ -83,6 +83,43 @@ StatusResult getTempratureStatusResult(float value, bool shortStatus){
   }
 }
 
-void humidityCheckStatus(){ //todo
+void humidityCheckStatus(){ 
+  float humidity1 = getHumidity(1);
+  float humidity2 = getHumidity(2);
+  float humidity3 = getHumidity(3);
+
+  float avgHumidity = humidity1 + humidity2 + humidity3 / 3;
+
+  _HumidityStatus.Humidity1 = getHumidityStatusResult(humidity1, false);
+  _HumidityStatus.Humidity2 = getHumidityStatusResult(humidity2, false);
+  _HumidityStatus.Humidity3 = getHumidityStatusResult(humidity3, false);
   
+}
+
+
+StatusResult getHumidityStatusResult(float value, bool shortStatus){
+  
+  char buffer[80];
+
+  if(shortStatus) sprintf(buffer, "%f2%", value);
+    
+  if (value > MAXIMUM_HUMIDITY_FOR_ERROR){
+    if(!shortStatus) sprintf(buffer, "Error, Humidity %f2% is too high", value); 
+    return StatusResult(String(buffer), STATUS_ERROR, PRIORITY_HIGH);
+  }
+  else if(value > MAXIMUM_HUMIDITY_FOR_WARNING){
+    if(!shortStatus) sprintf(buffer, "Warning, Humidity %f2% is high", value); 
+    return StatusResult(String(buffer), STATUS_WARNING, PRIORITY_MEDIUM);
+  }
+  else if(value < MINIMUM_HUMIDITY_FOR_ERROR){
+    if(!shortStatus) sprintf(buffer, "Warning, Humidity %f2% is high", value); 
+    return StatusResult(String(buffer), STATUS_ERROR, PRIORITY_HIGH);
+  }
+  else if(value < MINIMUM_HUMIDITY_FOR_WARNING){
+    if(!shortStatus) sprintf(buffer, "Warning, Humidity %f2% is low", value); 
+    return StatusResult(String(buffer), STATUS_WARNING, PRIORITY_MEDIUM);
+  }
+  else{
+    return StatusResult(String(buffer), STATUS_OK, PRIORITY_LOW);
+  }
 }

@@ -46,11 +46,10 @@ void lcdShowHomeScreen(){
   lcd.Print_String("Drainage:", 10, 125);
   lcd.Print_String("Battery:", 10, 145);
   lcd.Print_String("Water:", 10, 165);
-  lcd.Print_String("Drainage:", 10, 185);
-  lcd.Print_String("Temprature:", 10, 205);
-  lcd.Print_String("Humidity:", 10, 225);
-  lcd.Print_String("WI-FI:", 10, 245);
-  lcd.Print_String("Server:", 10, 265);
+  lcd.Print_String("Temprature:", 10, 185);
+  lcd.Print_String("Humidity:", 10, 205);
+  lcd.Print_String("WI-FI:", 10, 225);
+  lcd.Print_String("Server:", 10, 245);
   //Buttons
   lcd.Set_Text_Size(4);
   lcd.Draw_Rectangle(240,60,470,130);
@@ -101,14 +100,17 @@ void lcdShowHomeScreenStatus(){ //Status text blinking fix this TO:DO
   lcdWriteStatus(105, 65, _NfossetStatus.Short);
   lcd.Print_String("       ", 105, 85);
   lcdWriteStatus(105, 85, _OfossetStatus.Short);
-  lcd.Print_String("       ", 105, 105);
-  lcdWriteStatus(100, 105, _PumpStatus.Short);
-  lcd.Print_String("       ", 105, 125);
-  lcdWriteStatus(100, 125, _DrainageStatus.Short);
+  lcd.Print_String("       ", 75, 105);
+  lcdWriteStatus(75, 105, _PumpStatus.Short);
+  lcd.Print_String("       ", 120, 125);
+  lcdWriteStatus(120, 125, _DrainageStatus.Short);
   lcd.Print_String("       ", 105, 145);
-  lcdWriteStatus(100, 145, _BatteryStatus.Short);
+  lcdWriteStatus(105, 145, _BatteryStatus.Short);
   lcd.Print_String("       ", 105, 165);
-  lcdWriteStatus(100, 165, _WaterHightStatus.Short);
+  lcdWriteStatus(105, 165, _WaterHightStatus.Short);
+  //lcd.Print_String("       ", 105, 195);
+  lcdWriteStatus(105, 195, _TempratureStatus.Short);
+  //
   
 }
 
