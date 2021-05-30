@@ -34,8 +34,8 @@
 
 #define LCD_PAGE_HOME 1 //
 #define LCD_PAGE_STATUS 2
-#define LCD_PAGE_SETUP 3
-
+#define LCD_PAGE_CONFIG 3
+#define LCD_PAGE_ABOUT 4    
 
 #define MAX_VALUE_FOR_VOLTAGE_TEST 700
 #define MAX_BATTERY_VOLTAGE 12
@@ -102,7 +102,7 @@ int _Lcd_Status; // LCD_PAGE_HOME, LCD_PAGE_STATUS, LCD_PAGE_SETUP.
 
 void setup(){
   serialInit();
-  //temperatureInit();
+  tempratureSensorInit();
   ofossetInit();
   nfossetInit();
   pumpInit();
@@ -121,11 +121,16 @@ void loop(){
   pumpCheckStatus();
   drainageCheckStatus();
   batteryCheckStatus();
-  //tempratureCheckStatus();
-  //humidityCheckStatus();
-  lcdShowHomeScreenStatus();
+  tempratureCheckStatus();
+  //tempratureTest();
+  //Serial.println(_TempratureStatus.Short.StatusText);
+  humidityCheckStatus();
+  if(_Lcd_Status = LCD_PAGE_HOME){
+    lcdShowHomeScreenStatus();
+  }
   lcdHandleTouch();
-  test();
+  Serial.print(_Lcd_Status);
+  //test();
   
   //mainLogic(); //Automation 
 }
@@ -180,7 +185,7 @@ void mainLogic() //
 
 void test()
 {
-  tempratureTest();
+//  tempratureTest();
 //  ofossetTest();
 //  nfossetTest();
 //  pumpTest();

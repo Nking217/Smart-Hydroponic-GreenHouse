@@ -48,8 +48,9 @@ void lcdShowHomeScreen(){
   lcd.Print_String("Water:", 10, 165);
   lcd.Print_String("Temprature:", 10, 185);
   lcd.Print_String("Humidity:", 10, 205);
-  lcd.Print_String("WI-FI:", 10, 225);
-  lcd.Print_String("Server:", 10, 245);
+  lcd.Print_String("Turbidity:", 10, 225);
+  lcd.Print_String("WI-FI:", 10, 245);
+  lcd.Print_String("Server:", 10, 265);
   //Buttons
   lcd.Set_Text_Size(4);
   lcd.Draw_Rectangle(240,60,470,130);
@@ -61,7 +62,6 @@ void lcdShowHomeScreen(){
   lcd.Draw_Rectangle(240,220,470,290);
   lcd.Print_String("About", 280,240);
   lcd.Set_Text_Size(2);
-  
   lcdHandleTouch();
 }
 
@@ -73,14 +73,17 @@ void lcdHandleTouch(){
       if(x >= 240 && x <= 470 && y >= 60 && y <= 130){ //Status Screen button 240,60,470,130
         Serial.println("Status");
         lcdShowStatusScreen();
+        _Lcd_Status = LCD_PAGE_STATUS;
       }
       if(x >= 240 && x <= 470 && y >= 140 && y <= 210){ //Configuration Screen Button  240,140,470,210
         Serial.println("Config");
         lcdShowConfigScreen();
+        _Lcd_Status = LCD_PAGE_CONFIG;
       }
       if(x >= 240 && x <= 470 && y >= 220 && y <= 290){ //About Screen Button 240,220,470,290
         Serial.println("About");
         lcdShowAboutScreen();
+        _Lcd_Status = LCD_PAGE_ABOUT;
       }
     }
   }
@@ -108,13 +111,19 @@ void lcdShowHomeScreenStatus(){ //Status text blinking fix this TO:DO
   lcdWriteStatus(105, 145, _BatteryStatus.Short);
   lcd.Print_String("       ", 105, 165);
   lcdWriteStatus(105, 165, _WaterHightStatus.Short);
-  //lcd.Print_String("       ", 105, 195);
-  lcdWriteStatus(105, 195, _TempratureStatus.Short);
-  //
+  lcd.Print_String("       ", 105, 195);
+  lcdWriteStatus(115, 185, _TempratureStatus.Short);
+  //lcd.Print_String("       ", 115, 205);
+  lcdWriteStatus(115, 205, _HumidityStatus.Short);
+  lcd.Print_String("       ", 105, 225);
+  //lcdWriteStatus(105, 225, turbidityStatus_Short);
+  
   
 }
 
 void lcdShowStatusScreen(){
+  _Lcd_Status = LCD_PAGE_STATUS;
+  lcd.Fill_Screen(WHITE);
   
 }
 

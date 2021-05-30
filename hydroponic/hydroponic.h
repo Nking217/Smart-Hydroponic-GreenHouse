@@ -140,6 +140,20 @@ class HumidityStatus{
 };
 
 HumidityStatus _HumidityStatus;
+
+////////////////////////
+/// Turbidity Status ///
+////////////////////////
+
+class TurbidityStatus{
+  public:
+    StatusResult IsWorking;
+
+    StatusResult Short;
+};
+
+TurbidityStatus _TurbidityStatus;
+
 ///////////////////////////
 // function declarations //
 ///////////////////////////

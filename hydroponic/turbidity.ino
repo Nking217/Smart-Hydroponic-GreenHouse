@@ -23,6 +23,24 @@ bool tubidityIsWorking(){ //fix this when you can run tests
   return true;
 }
 
+void turbidityCheckStatus(){ //Finish the turbidity Check Status function today.
+  bool turbidityIsWorking = tubidityIsWorking();
+  int turbidityValue = turbidityReadPercent();
+  
+  if(turbidityIsWorking){
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 String turbidityStatus_Short(){ //TURBIDITY STATUS FOR THE HOME SCREEN (AR&AP)

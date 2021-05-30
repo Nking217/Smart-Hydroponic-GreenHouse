@@ -59,8 +59,8 @@ void tempratureCheckStatus(){
 StatusResult getTempratureStatusResult(float value, bool shortStatus){
   
   char buffer[80];
-
-  if(shortStatus) sprintf(buffer, "%f2°C", value);
+  //Temprature printing not working -- fix this
+  if(shortStatus) sprintf(buffer, "%f°C", value);
     
   if (value > MAXIMUM_TEMPRATURE_FOR_ERROR){
     if(!shortStatus) sprintf(buffer, "Error, Temprature %f2°C is too high", value); 
