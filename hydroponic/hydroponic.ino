@@ -122,7 +122,7 @@ void loop(){
   drainageCheckStatus();
   batteryCheckStatus();
   temperatureCheckStatus();
-  //TEMPERATURETest();
+  temperatureTest();
   //Serial.println(_TemperatureStatus.Short.StatusText);
   humidityCheckStatus();
   if(_Lcd_Status = LCD_PAGE_HOME){
