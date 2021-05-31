@@ -112,7 +112,7 @@ void lcdShowHomeScreenStatus(){ //Status text blinking fix this TO:DO
   lcd.Print_String("       ", 105, 165);
   lcdWriteStatus(105, 165, _WaterHightStatus.Short);
   lcd.Print_String("       ", 105, 195);
-  lcdWriteStatus(115, 185, _TempratureStatus.Short);
+  lcdWriteStatus(115, 185, _TemperatureStatus.Short);
   //lcd.Print_String("       ", 115, 205);
   lcdWriteStatus(115, 205, _HumidityStatus.Short);
   lcd.Print_String("       ", 105, 225);

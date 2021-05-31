@@ -110,20 +110,20 @@ class WaterHightStatus{
 WaterHightStatus _WaterHightStatus;
 
 /////////////////////////
-/// Temprature Status ///
+/// Temperature Status ///
 /////////////////////////
 
-class TempratureStatus{
+class TemperatureStatus{
   public:
-    StatusResult Temprature1;
-    StatusResult Temprature2;
-    StatusResult Temprature3;
+    StatusResult Temperature1;
+    StatusResult Temperature2;
+    StatusResult Temperature3;
     
     StatusResult Short;
    
 };
 
-TempratureStatus _TempratureStatus;
+TemperatureStatus _TemperatureStatus;
 
 /////////////////////////
 /// Humidity Status ///

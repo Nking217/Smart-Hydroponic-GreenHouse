@@ -20,9 +20,9 @@
 #define WATER_HIGH_SWITCH_PIN 12
 #define WATER_LOW_SWITCH_PIN 11
 #define TURBIDITY_PIN A2
-#define TEMPRATURE_SENSOR1_PIN A10
-#define TEMPRATURE_SENSOR2_PIN A11
-#define TEMPRATURE_SENSOR3_PIN A12
+#define TEMPERATURE_SENSOR1_PIN A10
+#define TEMPERATURE_SENSOR2_PIN A11
+#define TEMPERATURE_SENSOR3_PIN A12
 #define LIGHT_SENSOR1_PIN A3
 #define LIGHT_SENSOR2_PIN A7
 #define LIGHT_SENSOR3_PIN A8
@@ -57,10 +57,10 @@
 #define STATUS_WARNING_COLOR YELLOW
 #define STATUS_ERROR_COLOR RED
 
-#define MINIMUM_TEMPRATURE_FOR_WARNING 7
-#define MINIMUM_TEMPRATURE_FOR_ERROR 2
-#define MAXIMUM_TEMPRATURE_FOR_WARNING 32
-#define MAXIMUM_TEMPRATURE_FOR_ERROR 40
+#define MINIMUM_TEMPERATURE_FOR_WARNING 7
+#define MINIMUM_TEMPERATURE_FOR_ERROR 2
+#define MAXIMUM_TEMPERATURE_FOR_WARNING 32
+#define MAXIMUM_TEMPERATURE_FOR_ERROR 40
 
 #define MINIMUM_HUMIDITY_FOR_WARNING 50
 #define MINIMUM_HUMIDITY_FOR_ERROR 30
@@ -102,7 +102,7 @@ int _Lcd_Status; // LCD_PAGE_HOME, LCD_PAGE_STATUS, LCD_PAGE_SETUP.
 
 void setup(){
   serialInit();
-  tempratureSensorInit();
+  temperatureSensorInit();
   ofossetInit();
   nfossetInit();
   pumpInit();
@@ -121,9 +121,9 @@ void loop(){
   pumpCheckStatus();
   drainageCheckStatus();
   batteryCheckStatus();
-  tempratureCheckStatus();
-  //tempratureTest();
-  //Serial.println(_TempratureStatus.Short.StatusText);
+  temperatureCheckStatus();
+  //TEMPERATURETest();
+  //Serial.println(_TemperatureStatus.Short.StatusText);
   humidityCheckStatus();
   if(_Lcd_Status = LCD_PAGE_HOME){
     lcdShowHomeScreenStatus();
@@ -185,7 +185,7 @@ void mainLogic() //
 
 void test()
 {
-//  tempratureTest();
+//  TEMPERATURETest();
 //  ofossetTest();
 //  nfossetTest();
 //  pumpTest();
