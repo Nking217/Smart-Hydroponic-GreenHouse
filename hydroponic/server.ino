@@ -27,13 +27,25 @@ void serverInit(){
 }
 
 void serverTest(){
-  serverRandomTest();
+  //serverRandomTest();
 }
 
 byte _ServerConnectionStatus;
 long _ServerConnectionStatusTime;
 byte _ServerRequestType;
 
+
+long rtc_GetTimeStamp()
+{
+  return millis();
+}
+
+void serverSendResault(StatusResult stat, byte sensorId){
+  if (!stat.Sent && !stat.Status == STATUS_OK){
+    long timeStamp = rtc_GetTimeStamp();
+    serverSendLog(sensorId, timeStamp, stat.Priorty, stat.StatusText);
+  }
+}
 
 void serverSendLog(byte sensorId, long timeStamp, byte priority, String message){
   _ServerRequestType = SERVER_REQUEST_LOG;
@@ -75,6 +87,8 @@ void serverSendSensorData(byte sensorId, long timeStamp, int value){
   ///// Testing with get request /////
   //url = url + "?" + data; 
   //espSendGetRequest(requestId, url);
+  Serial.print(url);
+  Serial.println(data);
 }
 
 
@@ -135,6 +149,7 @@ void serverNotifyError(int sensorId, int errorType, String errorMsg, String time
   /// Testing with get request ///
   //espSendGetRequest(url);
   //url = url + "?" + data;
+  
 
 }
 

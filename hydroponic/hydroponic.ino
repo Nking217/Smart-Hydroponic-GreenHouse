@@ -1,7 +1,7 @@
-//#include <dht.h>
+/////// Smart Hidrophonic GreenHouse - Made by Nave Sasoni 2020-2021 ///////
+////////////////////////////////////////////////////////////////////////////
+
 #include "DHT.h"
-
-
 
 #include "hydroponic.h"
 #include "ili9488.h"
@@ -99,7 +99,6 @@ bool _VoltageError;
 //int temperatureGet();
 int _Lcd_Status; // LCD_PAGE_HOME, LCD_PAGE_STATUS, LCD_PAGE_SETUP.
 
-
 void setup(){
   serialInit();
   temperatureSensorInit();
@@ -122,19 +121,20 @@ void loop(){
   drainageCheckStatus();
   batteryCheckStatus();
   temperatureCheckStatus();
-  temperatureTest();
-  //Serial.println(_TemperatureStatus.Short.StatusText);
   humidityCheckStatus();
+  //temperatureTest();
+  //Serial.println(_TemperatureStatus.Short.StatusText);
   if(_Lcd_Status = LCD_PAGE_HOME){
     lcdShowHomeScreenStatus();
   }
   lcdHandleTouch();
-  Serial.print(_Lcd_Status);
-  //test();
+ // getTemperatureStatusResult(int 1 bool true);
+  //Serial.print(_Lcd_Status);
+  //espTest();
   
   //mainLogic(); //Automation 
+  tempratureSendSensorData();
 }
-
 
 
 void mainLogic() //
@@ -182,7 +182,6 @@ void mainLogic() //
   }
 }
 
-
 void test()
 {
 //  TEMPERATURETest();
@@ -200,32 +199,3 @@ void test()
 void serialInit(){
   Serial.begin(9600);
 }
-
-
-/////////////////////////
-/// Temperature LM75a ///
-///////////////////////// //Switch the tempreature sensor or fix the code...
-
-/* //fix this shit
-void temperatuereTest(){
-  Serial.println("testing Temperature sensor");
-  if(_Lm75a.isConnected()){
-    Serial.println ("temperture sensor connected");
-    int temp = temperatureGet();
-    if(temp >0 && temp<40)
-      Serial.println(temp);
-  }
-  else
-  {
-    Serial.println("ERROR: tempretature sensor not connected");
-  }
-}
-
-bool temperatureInit(){
-  _Lm75a.begin();
-  return _Lm75a.isConnected();
-}
-int temperatureGet(){
-  return _Lm75a.getTemperature();
-}
-*/

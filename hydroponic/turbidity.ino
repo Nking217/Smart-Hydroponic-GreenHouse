@@ -33,16 +33,6 @@ void turbidityCheckStatus(){ //Finish the turbidity Check Status function today.
 }
 
 
-
-
-
-
-
-
-
-
-
-
 String turbidityStatus_Short(){ //TURBIDITY STATUS FOR THE HOME SCREEN (AR&AP)
   bool IsWorking = tubidityIsWorking(); //change it to the minimum and the maximum values, with % . 
   int turbidityValue = turbidityReadPercent();

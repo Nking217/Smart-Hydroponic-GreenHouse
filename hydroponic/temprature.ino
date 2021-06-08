@@ -47,11 +47,34 @@ void temperatureCheckStatus(){
   int temperature2 = getTemperature(2);
   int temperature3 = getTemperature(3);
 
-  int avgTemperature = temperature1 + temperature2 + temperature3 / 3;
+  float avgTemperature = (temperature1 + temperature2 + temperature3) / 3;
   
+  String oldStatus1 = _TemperatureStatus.Temperature1.StatusText;
+  bool oldSent1 = _TemperatureStatus.Temperature1.Sent;
   _TemperatureStatus.Temperature1 = getTemperatureStatusResult(temperature1,false);
+  if (oldStatus1 != _TemperatureStatus.Temperature1.StatusText)
+    _TemperatureStatus.Temperature1.Sent = false;
+  else
+    _TemperatureStatus.Temperature1.Sent = oldSent1;
+
+String oldStatus2 = _TemperatureStatus.Temperature2.StatusText;
+  bool oldSent2 = _TemperatureStatus.Temperature2.Sent;
   _TemperatureStatus.Temperature2 = getTemperatureStatusResult(temperature2,false);
+  if (oldStatus2 != _TemperatureStatus.Temperature2.StatusText)
+    _TemperatureStatus.Temperature2.Sent = false;
+  else
+    _TemperatureStatus.Temperature2.Sent = oldSent2;
+
+String oldStatus3 = _TemperatureStatus.Temperature3.StatusText;
+  bool oldSent3 = _TemperatureStatus.Temperature3.Sent;
   _TemperatureStatus.Temperature3 = getTemperatureStatusResult(temperature3,false);
+  if (oldStatus3 != _TemperatureStatus.Temperature3.StatusText)
+    _TemperatureStatus.Temperature3.Sent = false;
+  else
+    _TemperatureStatus.Temperature1.Sent = oldSent1;
+
+  //_TemperatureStatus.Temperature2 = getTemperatureStatusResult(temperature2,false);
+ // _TemperatureStatus.Temperature3 = getTemperatureStatusResult(temperature3,false);
 
   _TemperatureStatus.Short = getTemperatureStatusResult(avgTemperature, true);
 }
@@ -60,22 +83,25 @@ StatusResult getTemperatureStatusResult(int value, bool shortStatus){
   
   char buffer[80];
   //Temperature printing not working -- fix this
-  if(shortStatus) sprintf(buffer, "%f°C", value);
+  if(shortStatus){
+    sprintf(buffer, "%dC", value);
+  }
+
     
   if (value > MAXIMUM_TEMPERATURE_FOR_ERROR){
-    if(!shortStatus) sprintf(buffer, "Error, Temperature %d2°C is too high", value); 
+    if(!shortStatus) sprintf(buffer, "Error, Temperature %dC is too high", value); 
     return StatusResult(String(buffer), STATUS_ERROR, PRIORITY_HIGH);
   }
   else if(value > MAXIMUM_TEMPERATURE_FOR_WARNING){
-    if(!shortStatus) sprintf(buffer, "Warning, Temperature %d2°C is high", value); 
+    if(!shortStatus) sprintf(buffer, "Warning, Temperature %dC is high", value); 
     return StatusResult(String(buffer), STATUS_WARNING, PRIORITY_MEDIUM);
   }
   else if(value < MINIMUM_TEMPERATURE_FOR_ERROR){
-    if(!shortStatus) sprintf(buffer, "Warning, Temperature %d2°C is high", value); 
+    if(!shortStatus) sprintf(buffer, "Warning, Temperature %dC is high", value); 
     return StatusResult(String(buffer), STATUS_ERROR, PRIORITY_HIGH);
   }
   else if(value < MINIMUM_TEMPERATURE_FOR_WARNING){
-    if(!shortStatus) sprintf(buffer, "Warning, Temperature %d2°C is low", value); 
+    if(!shortStatus) sprintf(buffer, "Warning, Temperature %dC is low", value); 
     return StatusResult(String(buffer), STATUS_WARNING, PRIORITY_MEDIUM);
   }
   else{
@@ -84,11 +110,11 @@ StatusResult getTemperatureStatusResult(int value, bool shortStatus){
 }
 
 void humidityCheckStatus(){ 
-  float humidity1 = getHumidity(1);
-  float humidity2 = getHumidity(2);
-  float humidity3 = getHumidity(3);
+  int humidity1 = getHumidity(1);
+  int humidity2 = getHumidity(2);
+  int humidity3 = getHumidity(3);
 
-  float avgHumidity = humidity1 + humidity2 + humidity3 / 3;
+  int avgHumidity = (humidity1 + humidity2 + humidity3) / 3;
 
   _HumidityStatus.Humidity1 = getHumidityStatusResult(humidity1, false);
   _HumidityStatus.Humidity2 = getHumidityStatusResult(humidity2, false);
@@ -97,29 +123,41 @@ void humidityCheckStatus(){
 }
 
 
-StatusResult getHumidityStatusResult(float value, bool shortStatus){
+StatusResult getHumidityStatusResult(int value, bool shortStatus){
   
   char buffer[80];
 
-  if(shortStatus) sprintf(buffer, "%f2%", value);
+  if(shortStatus) sprintf(buffer, "%d%", value);
     
   if (value > MAXIMUM_HUMIDITY_FOR_ERROR){
-    if(!shortStatus) sprintf(buffer, "Error, Humidity %f2% is too high", value); 
+    if(!shortStatus) sprintf(buffer, "Error, Humidity %d% is too high", value); 
     return StatusResult(String(buffer), STATUS_ERROR, PRIORITY_HIGH);
   }
   else if(value > MAXIMUM_HUMIDITY_FOR_WARNING){
-    if(!shortStatus) sprintf(buffer, "Warning, Humidity %f2% is high", value); 
+    if(!shortStatus) sprintf(buffer, "Warning, Humidity %d% is high", value); 
     return StatusResult(String(buffer), STATUS_WARNING, PRIORITY_MEDIUM);
   }
   else if(value < MINIMUM_HUMIDITY_FOR_ERROR){
-    if(!shortStatus) sprintf(buffer, "Warning, Humidity %f2% is high", value); 
+    if(!shortStatus) sprintf(buffer, "Warning, Humidity %d% is high", value); 
     return StatusResult(String(buffer), STATUS_ERROR, PRIORITY_HIGH);
   }
   else if(value < MINIMUM_HUMIDITY_FOR_WARNING){
-    if(!shortStatus) sprintf(buffer, "Warning, Humidity %f2% is low", value); 
+    if(!shortStatus) sprintf(buffer, "Warning, Humidity %d% is low", value); 
     return StatusResult(String(buffer), STATUS_WARNING, PRIORITY_MEDIUM);
   }
   else{
     return StatusResult(String(buffer), STATUS_OK, PRIORITY_LOW);
   }
+}
+
+
+void tempratureSendSensorData(){
+  int temp1 = getTemperature(1);
+  int temp2 = getTemperature(2);
+  int temp3 = getTemperature(3);
+
+  
+  serverSendSensorData(4, 0, temp1);
+  serverSendSensorData(5, 0, temp2);
+  serverSendSensorData(6, 0, temp3);
 }

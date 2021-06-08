@@ -62,7 +62,6 @@ void lcdShowHomeScreen(){
   lcd.Draw_Rectangle(240,220,470,290);
   lcd.Print_String("About", 280,240);
   lcd.Set_Text_Size(2);
-  lcdHandleTouch();
 }
 
 void lcdHandleTouch(){
@@ -111,12 +110,12 @@ void lcdShowHomeScreenStatus(){ //Status text blinking fix this TO:DO
   lcdWriteStatus(105, 145, _BatteryStatus.Short);
   lcd.Print_String("       ", 105, 165);
   lcdWriteStatus(105, 165, _WaterHightStatus.Short);
-  lcd.Print_String("       ", 105, 195);
-  lcdWriteStatus(115, 185, _TemperatureStatus.Short);
-  //lcd.Print_String("       ", 115, 205);
+  lcd.Print_String("       ", 140, 195);
+  lcdWriteStatus(140, 185, _TemperatureStatus.Short);
+  lcd.Print_String("       ", 115, 205);
   lcdWriteStatus(115, 205, _HumidityStatus.Short);
   lcd.Print_String("       ", 105, 225);
-  //lcdWriteStatus(105, 225, turbidityStatus_Short);
+  //lcdWriteStatus(105, 225, ); Convert turbidity to statusresult (not working right now) 
   
   
 }
