@@ -57,24 +57,24 @@ void temperatureCheckStatus(){
   else
     _TemperatureStatus.Temperature1.Sent = oldSent1;
 
-String oldStatus2 = _TemperatureStatus.Temperature2.StatusText;
-  bool oldSent2 = _TemperatureStatus.Temperature2.Sent;
-  _TemperatureStatus.Temperature2 = getTemperatureStatusResult(temperature2,false);
-  if (oldStatus2 != _TemperatureStatus.Temperature2.StatusText)
-    _TemperatureStatus.Temperature2.Sent = false;
-  else
-    _TemperatureStatus.Temperature2.Sent = oldSent2;
-
-String oldStatus3 = _TemperatureStatus.Temperature3.StatusText;
-  bool oldSent3 = _TemperatureStatus.Temperature3.Sent;
-  _TemperatureStatus.Temperature3 = getTemperatureStatusResult(temperature3,false);
-  if (oldStatus3 != _TemperatureStatus.Temperature3.StatusText)
-    _TemperatureStatus.Temperature3.Sent = false;
-  else
-    _TemperatureStatus.Temperature1.Sent = oldSent1;
+  String oldStatus2 = _TemperatureStatus.Temperature2.StatusText;
+    bool oldSent2 = _TemperatureStatus.Temperature2.Sent;
+    _TemperatureStatus.Temperature2 = getTemperatureStatusResult(temperature2,false);
+    if (oldStatus2 != _TemperatureStatus.Temperature2.StatusText)
+      _TemperatureStatus.Temperature2.Sent = false;
+    else
+      _TemperatureStatus.Temperature2.Sent = oldSent2;
+  
+  String oldStatus3 = _TemperatureStatus.Temperature3.StatusText;
+    bool oldSent3 = _TemperatureStatus.Temperature3.Sent;
+    _TemperatureStatus.Temperature3 = getTemperatureStatusResult(temperature3,false);
+    if (oldStatus3 != _TemperatureStatus.Temperature3.StatusText)
+      _TemperatureStatus.Temperature3.Sent = false;
+    else
+      _TemperatureStatus.Temperature3.Sent = oldSent3;
 
   //_TemperatureStatus.Temperature2 = getTemperatureStatusResult(temperature2,false);
- // _TemperatureStatus.Temperature3 = getTemperatureStatusResult(temperature3,false);
+  // _TemperatureStatus.Temperature3 = getTemperatureStatusResult(temperature3,false);
 
   _TemperatureStatus.Short = getTemperatureStatusResult(avgTemperature, true);
 }
@@ -116,10 +116,36 @@ void humidityCheckStatus(){
 
   int avgHumidity = (humidity1 + humidity2 + humidity3) / 3;
 
-  _HumidityStatus.Humidity1 = getHumidityStatusResult(humidity1, false);
-  _HumidityStatus.Humidity2 = getHumidityStatusResult(humidity2, false);
-  _HumidityStatus.Humidity3 = getHumidityStatusResult(humidity3, false);
+  String oldStatus1 = _HumidityStatus.Humidity1.StatusText;
+  bool oldSent1 = _HumidityStatus.Humidity1.Sent;
+  _HumidityStatus.Humidity1 = getHumidityStatusResult(humidity1,false);
+  if (oldStatus1 != _HumidityStatus.Humidity1.StatusText)
+    _HumidityStatus.Humidity1.Sent = false;
+  else
+    _HumidityStatus.Humidity1.Sent = oldSent1;
+
+  String oldStatus2 = _HumidityStatus.Humidity2.StatusText;
+  bool oldSent2 = _HumidityStatus.Humidity2.Sent;
+  _HumidityStatus.Humidity2 = getHumidityStatusResult(humidity2,false);
+  if (oldStatus2 != _HumidityStatus.Humidity2.StatusText)
+    _HumidityStatus.Humidity2.Sent = false;
+  else
+    _HumidityStatus.Humidity2.Sent = oldSent2;
+
+  String oldStatus3 = _HumidityStatus.Humidity3.StatusText;
+  bool oldSent3 = _HumidityStatus.Humidity3.Sent;
+  _HumidityStatus.Humidity3 = getHumidityStatusResult(humidity3,false);
+  if (oldStatus3 != _HumidityStatus.Humidity3.StatusText)
+    _HumidityStatus.Humidity3.Sent = false;
+  else
+    _HumidityStatus.Humidity3.Sent = oldSent1;
+
+  //_HumidityStatus.Humidity1 = getHumidityStatusResult(humidity1, false);
+  //_HumidityStatus.Humidity2 = getHumidityStatusResult(humidity2, false);
+  //_HumidityStatus.Humidity3 = getHumidityStatusResult(humidity3, false);
+
   
+  _HumidityStatus.Short = getHumidityStatusResult(avgHumidity, true);
 }
 
 

@@ -36,7 +36,6 @@ int waterHightRead(){
   }
 }
 
-
-void waterHightCheckStatus(){
+void waterHightStatus(){
   
 }

@@ -87,8 +87,8 @@ void serverSendSensorData(byte sensorId, long timeStamp, int value){
   ///// Testing with get request /////
   //url = url + "?" + data; 
   //espSendGetRequest(requestId, url);
-  Serial.print(url);
-  Serial.println(data);
+  //Serial.print(url);
+  //Serial.println(data);
 }
 
 

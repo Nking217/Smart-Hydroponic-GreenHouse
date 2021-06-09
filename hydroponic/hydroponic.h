@@ -110,9 +110,9 @@ class WaterHightStatus{
 
 WaterHightStatus _WaterHightStatus;
 
-/////////////////////////
+//////////////////////////
 /// Temperature Status ///
-/////////////////////////
+//////////////////////////
 
 class TemperatureStatus{
   public:

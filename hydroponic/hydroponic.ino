@@ -1,4 +1,5 @@
-/////// Smart Hidrophonic GreenHouse - Made by Nave Sasoni 2020-2021 ///////
+////////////////////////////////////////////////////////////////////////////
+/////// Smart Hydroponic Greenhouse - Made by Nave Sasoni 2020-2021 ///////
 ////////////////////////////////////////////////////////////////////////////
 
 #include "DHT.h"
@@ -36,6 +37,20 @@
 #define LCD_PAGE_STATUS 2
 #define LCD_PAGE_CONFIG 3
 #define LCD_PAGE_ABOUT 4    
+
+#define STATUS_SUBPAGE_MAIN 0
+#define STATUS_SUBPAGE_NFOSSET 1
+#define STATUS_SUBPAGE_OFOSSET 2
+#define STATUS_SUBPAGE_PUMP 3
+#define STATUS_SUBPAGE_DRAINAGE 4
+#define STATUS_SUBPAGE_BATTERY 5
+#define STATUS_SUBPAGE_WATER 6
+#define STATUS_SUBPAGE_TEMPERATURE 7
+#define STATUS_SUBPAGE_HUMIDITY 8
+#define STATUS_SUBPAGE_TURBIDITY 9
+#define STATUS_SUBPAGE_WIFI 10
+#define STATUS_SUBPAGE_SERVER 11
+
 
 #define MAX_VALUE_FOR_VOLTAGE_TEST 700
 #define MAX_BATTERY_VOLTAGE 12
@@ -97,7 +112,8 @@ bool _IsPumpRunning;
 bool _PumpError;
 bool _VoltageError;
 //int temperatureGet();
-int _Lcd_Status; // LCD_PAGE_HOME, LCD_PAGE_STATUS, LCD_PAGE_SETUP.
+int _Lcd_Status; // LCD_PAGE_HOME, LCD_PAGE_STATUS, LCD_PAGE_CONFIG, LCD_PAGE_ABOUT.
+int _Lcd_Status_Subpage; 
 
 void setup(){
   serialInit();
@@ -115,30 +131,24 @@ void setup(){
 }
 
 void loop(){
-  nfossetCheckStatus();
-  ofossetCheckStatus();
-  pumpCheckStatus();
-  drainageCheckStatus();
-  batteryCheckStatus();
-  temperatureCheckStatus();
-  humidityCheckStatus();
-  //temperatureTest();
-  //Serial.println(_TemperatureStatus.Short.StatusText);
-  if(_Lcd_Status = LCD_PAGE_HOME){
+  checkStatus();
+  lcdHandleTouch();
+  if(_Lcd_Status == LCD_PAGE_HOME){
     lcdShowHomeScreenStatus();
   }
-  lcdHandleTouch();
- // getTemperatureStatusResult(int 1 bool true);
+  else if(_Lcd_Status == LCD_PAGE_STATUS){
+    lcdShowStatusScreenStatus();
+  }
+  turbidityTest();
+  //lcdHandleTouch();
+  //getTemperatureStatusResult(int 1 bool true);
   //Serial.print(_Lcd_Status);
-  //espTest();
-  
-  //mainLogic(); //Automation 
-  tempratureSendSensorData();
+  //test();
+  tbmainLogic(); //Automation 
+  //tempratureSendSensorData();
 }
 
-
-void mainLogic() //
-{
+void mainLogic(){
   espReconnect();
 //  serverReconnect();
   
@@ -187,6 +197,7 @@ void test()
 //  TEMPERATURETest();
 //  ofossetTest();
 //  nfossetTest();
+//
 //  pumpTest();
 //  drainageTest();
 //  turbidityTest();
@@ -196,6 +207,16 @@ void test()
 //  espTest();
 }
 
+void checkStatus(){
+  nfossetCheckStatus();
+  ofossetCheckStatus();
+  pumpCheckStatus();
+  drainageCheckStatus();
+  batteryCheckStatus();
+  temperatureCheckStatus();
+  humidityCheckStatus();
+  lcdHandleTouch();
+}
 void serialInit(){
   Serial.begin(9600);
 }

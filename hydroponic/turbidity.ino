@@ -12,25 +12,31 @@ void turbidityInit()
     pinMode(TURBIDITY_PIN, INPUT);
 }
 
-int turbidityReadPercent()
-{
+int turbidityReadPercent(){
   int val = analogRead(TURBIDITY_PIN);  //Return status in %
-  return map(val, 0, 1024, 0, 100);
-//  return val * (5.0 / 1024.0);
+  return map(val, 0, 74, 0, 100);
 }
 
-bool tubidityIsWorking(){ //fix this when you can run tests
-  return true;
+bool turbidityIsWorking(){
+  int val = analogRead(TURBIDITY_PIN);
+  if(val != 0){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 void turbidityCheckStatus(){ //Finish the turbidity Check Status function today.
-  bool turbidityIsWorking = tubidityIsWorking();
-  int turbidityValue = turbidityReadPercent();
+  int turbidityPercent = turbidityReadPercent();
+  //bool turbidityIsWorking = turbidityIsWorking();
   
-  if(turbidityIsWorking){
-    
-  }
+  
 }
+
+
+
+
 
 
 String turbidityStatus_Short(){ //TURBIDITY STATUS FOR THE HOME SCREEN (AR&AP)
