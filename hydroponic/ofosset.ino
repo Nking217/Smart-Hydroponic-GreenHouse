@@ -233,8 +233,13 @@ void ofossetFlowTest(){
   //TODO
 }
 
-bool ofossetIsWaterFlowing(){
-  //TODO
+bool ofossetIsWaterFlowing(){ //Not completed yet (for now its on while the current and the signal is on)
+  if(ofossetIsCurrentOn() && ofossetIsSignalOn()){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 ///////////////////////////////////
 /// OSMOTIC FOSSET CURRENT TEST ///

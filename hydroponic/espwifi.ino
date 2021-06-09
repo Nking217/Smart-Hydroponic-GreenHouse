@@ -24,6 +24,51 @@ void espInit(){
   Serial3.begin(9600);
 }
 
+void handleEspRead(){
+  String content;
+  content = readFromEsp();
+  if (content != NO_DATA)
+  Serial.println(content);
+
+  int index = content.indexOf("CONNECTION_STATUS:");
+  if(index == -1){
+    content.substring(index + 18, content.lenght() - 1);
+    _WifiConnectionStatus = millis;
+    switch (content.substring(index + 18, content.lenght() - 1)){
+      case "WAITING":
+        _WifiConnectionStatus = CONNECTION_STATUS_WAITING;
+        _WifiConnectionStatusTime = millis;
+        break;
+      case "CONNECTING":
+        _WifiConnectionStatus = CONNECTION_STATUS_CONNECTING;
+        _WifiConnectionStatusTime = millis;
+        break;
+      case "CONNECTED":
+        _WifiConnectionStatus = CONNECTION_STATUS_CONNECTED;
+        _WifiConnectionStatusTime = millis;
+        break;
+      case "TIMEOUT":
+        _WifiConnectionStatus = CONNECTION_STATUS_TIMEOUT;
+        _WifiConnectionStatusTime = millis;
+        break;
+      case "ERROR":
+        _WifiConnectionStatus = CONNECTION_STATUS_ERROR;
+        _WifiConnectionStatusTime = millis;
+        break;
+      case "MISSING_INFO":
+        _WifiConnectionStatus = CONNECTION_STATUS_MISSING_INFO;
+        _WifiConnectionStatusTime = millis;
+        break;
+    }
+  }
+}
+
+
+void espCheckConnection(){
+  if(millis - _LastConnectionTimestamp < 
+}
+
+
 void espTest(){
   Serial.print("This is a test");
   espSetDebugMode(true);

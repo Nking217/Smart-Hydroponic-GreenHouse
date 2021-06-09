@@ -17,6 +17,13 @@ struct StatusResult{
     Priorty = priorty;
     Status = status;
   }
+  void print(){
+    Serial.print(StatusText);
+    Serial.print("  priority:");
+    Serial.print(Priorty);
+    Serial.print("  Status:");
+    Serial.println(Status);
+  }
 };
 
 ////////////////////////////
@@ -31,6 +38,23 @@ class nfossetStatus{
     StatusResult SuposeToRun;
 
     StatusResult Short;
+
+    void print(){
+      Serial.println("------------------");
+      Serial.println("Normal Fosset");
+      Serial.print("WaterFlowing:");
+      WaterFlowing.print();
+      Serial.print("CurrentOn:");
+      CurrentOn.print();
+      Serial.print("SignalOn:");
+      SignalOn.print();
+      Serial.print("CanRun:");
+      CanRun.print();
+      Serial.print("SuposeToRun:");
+      SuposeToRun.print();
+      Serial.println("------------------");
+      Serial.println();
+    }
 };
 
 nfossetStatus _NfossetStatus;
@@ -48,7 +72,24 @@ class ofossetStatus{
     StatusResult CanRun;
     StatusResult SuposeToRun;
 
-    StatusResult Short;    
+    StatusResult Short;
+
+    void print(){
+      Serial.println("------------------");
+      Serial.println("Osmotic Fosset");
+      Serial.print("WaterFlowing:");
+      WaterFlowing.print();
+      Serial.print("CurrentOn:");
+      CurrentOn.print();
+      Serial.print("SignalOn:");
+      SignalOn.print();
+      Serial.print("CanRun:");
+      CanRun.print();
+      Serial.print("SuposeToRun:");
+      SuposeToRun.print();
+      Serial.println("------------------");
+      Serial.println();
+    }
 };
 
 ofossetStatus _OfossetStatus;
@@ -66,7 +107,23 @@ class PumpStatus{
     StatusResult SuposeToRun;
 
     StatusResult Short;
-    
+
+    void print(){
+      Serial.println("------------------");
+      Serial.println("Pump");
+      Serial.print("WaterFlowing:");
+      WaterFlowing.print();
+      Serial.print("CurrentOn:");
+      CurrentOn.print();
+      Serial.print("SignalOn:");
+      SignalOn.print();
+      Serial.print("CanRun:");
+      CanRun.print();
+      Serial.print("SuposeToRun:");
+      SuposeToRun.print();
+      Serial.println("------------------");
+      Serial.println();
+    }
 };
 
 PumpStatus _PumpStatus;
@@ -80,6 +137,15 @@ class DrainageStatus{
     StatusResult SignalOn;
 
     StatusResult Short;
+
+    void print(){
+      Serial.println("------------------");
+      Serial.println("Drainage");
+      Serial.print("SignalOn:");
+      SignalOn.print();
+      Serial.println("------------------");
+      Serial.println();
+    }
 };
 
 DrainageStatus _DrainageStatus;
@@ -93,6 +159,15 @@ class BatteryStatus{
     StatusResult Voltage;
     
     StatusResult Short;
+
+    void print(){
+      Serial.println("------------------");
+      Serial.println("Battery");
+      Serial.print("Voltage:");
+      Voltage.print();
+      Serial.println("------------------");
+      Serial.println();
+    }
 };
 
 BatteryStatus _BatteryStatus;
@@ -106,6 +181,15 @@ class WaterHightStatus{
     StatusResult WaterLevle;
 
     StatusResult Short;
+
+    void print(){
+      Serial.println("------------------");
+      Serial.println("Water Hight");
+      Serial.print("WaterLevle:");
+      WaterLevle.print();
+      Serial.println("------------------");
+      Serial.println();
+    }
 };
 
 WaterHightStatus _WaterHightStatus;
@@ -121,7 +205,19 @@ class TemperatureStatus{
     StatusResult Temperature3;
     
     StatusResult Short;
-   
+
+    void print(){
+      Serial.println("------------------");
+      Serial.println("Temperature");
+      Serial.print("Temperature1:");
+      Temperature1.print();
+      Serial.print("Temperature2:");
+      Temperature2.print();
+      Serial.print("Temperature3:");
+      Temperature3.print();
+      Serial.println("------------------");
+      Serial.println();
+    }
 };
 
 TemperatureStatus _TemperatureStatus;
@@ -137,7 +233,19 @@ class HumidityStatus{
     StatusResult Humidity3;
 
     StatusResult Short;
-   
+
+    void print(){
+      Serial.println("------------------");
+      Serial.println("Temperature");
+      Serial.print("Humidity1:");
+      Humidity1.print();
+      Serial.print("Humidity2:");
+      Humidity2.print();
+      Serial.print("Humidity3:");
+      Humidity3.print();
+      Serial.println("------------------");
+      Serial.println();
+    }
 };
 
 HumidityStatus _HumidityStatus;
@@ -186,6 +294,7 @@ void lcdShowHomeScreen();
 void lcdShowHomeScreenStatus();
 void lcdShowStatusScreen();
 void lcdShowSetupScreen();
+void lcdHandleTouch();
 
 void nfossetTest();
 void nfossetInit();
@@ -244,3 +353,6 @@ void waterHightInit();
 int waterHightRead();
 
 void espInit();
+
+void waterHightSensorInit();
+void waterHightSensorTest();

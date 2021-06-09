@@ -14,7 +14,7 @@ void turbidityInit()
 
 int turbidityReadPercent(){
   int val = analogRead(TURBIDITY_PIN);  //Return status in %
-  return map(val, 0, 74, 0, 100);
+  return map(val, 0, 821, 0, 100);
 }
 
 bool turbidityIsWorking(){

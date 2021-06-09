@@ -290,9 +290,14 @@ void pumpFlowInit(){
 }
 
 void pumpFlowTest(){
-  //TODO
+  //Not ready for now
 }
 
-bool pumpIsWaterFlowing(){
-  //TODO
+bool pumpIsWaterFlowing(){ //Not completed yet (for now its on while the current and the signal is on)
+  if(pumpIsCurrentOn() && pumpIsSignalOn()){
+    return true;
+  }
+  else{
+    return false;
+  }
 }

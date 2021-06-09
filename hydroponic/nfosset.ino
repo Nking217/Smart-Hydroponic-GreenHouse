@@ -236,21 +236,26 @@ void nfossetFlowTest(){
   //TODO
 }
 
-bool nfossetIsWaterFlowing(){
-  //TODO
+bool nfossetIsWaterFlowing(){ //Not completed yet (for now its on while the current and the signal is on)
+  if(nfossetIsCurrentOn() && nfossetIsSignalOn()){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
-////////////////////////////////////////////
-/// NORMAL FOSST SOLONOID CURRENT TEST ///
-////////////////////////////////////////////
+/////////////////////////////////
+/// NORMAL FOSST CURRENT TEST ///
+/////////////////////////////////
 
 void nfossetCurrentInit(){
   pinMode(NFOSSET_CURRENT_TEST_PIN, INPUT);
 }
 
 void nfossetCurrentTest(){
-  //Serial.print("nfosset current:");
-  //Serial.println(nfossetCurrentRead());
+  Serial.print("nfosset current:");
+  Serial.println(analogRead(NFOSSET_CURRENT_TEST_PIN));
 }
 
 bool nfossetIsCurrentOn(){

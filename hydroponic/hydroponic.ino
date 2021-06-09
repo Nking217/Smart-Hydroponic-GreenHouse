@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "DHT.h"
-
+#include <SoftwareSerial.h>
 #include "hydroponic.h"
 #include "ili9488.h"
 #define BATTERY_VOLTAGE_TEST_PIN A1
@@ -29,9 +29,12 @@
 #define LIGHT_SENSOR3_PIN A8
 //ESP TX Pin 14, ESP RX Pin 15
 
+
+#define WATER_TANK_TOTAL_HIGHT 50 //50 cm water tank height
+
 #define ERROR -1
 #define MINIMUM_WATER_FOR_PUMP 20 //MINIMUM_WATER_IN_TANK
-#define MAXIMUM_WATER_IN_TANK 100
+#define MAXIMUM_WATER_IN_TANK 90
 
 #define LCD_PAGE_HOME 1 //
 #define LCD_PAGE_STATUS 2
@@ -83,6 +86,8 @@
 #define MAXIMUM_HUMIDITY_FOR_ERROR 95
 
 
+#define TIMEOUT_FOR_LAST_VALUD_WATER_HEIGHT 20000
+
 enum DrainageManualRequestValue{
   DrainageOpen,
   DrainageClose,
@@ -115,6 +120,8 @@ bool _VoltageError;
 int _Lcd_Status; // LCD_PAGE_HOME, LCD_PAGE_STATUS, LCD_PAGE_CONFIG, LCD_PAGE_ABOUT.
 int _Lcd_Status_Subpage; 
 
+
+
 void setup(){
   serialInit();
   temperatureSensorInit();
@@ -124,10 +131,14 @@ void setup(){
   drainageInit();
   turbidityInit();
   pumpCurrentInit();
+  waterHightSensorInit();
   lcdInit();
   espInit();
   eepromInit();
   lcdShowHomeScreen();
+  pumpManualControl(PumpManualRequestValue::PumpAutomatic);
+  ofossetManualControl(FossetManualRequestValue::FossetAutomatic);
+  nfossetManualControl(FossetManualRequestValue::FossetAutomatic);
 }
 
 void loop(){
@@ -139,39 +150,66 @@ void loop(){
   else if(_Lcd_Status == LCD_PAGE_STATUS){
     lcdShowStatusScreenStatus();
   }
-  turbidityTest();
+  //_PumpStatus.Short.print();
+  //waterHightSensorTest();
+  /*
+  Serial.print("--");
+  Serial.println(waterHightRead());
+  delay(2000);
+  */
+  //turbidityTest();
   //lcdHandleTouch();
   //getTemperatureStatusResult(int 1 bool true);
   //Serial.print(_Lcd_Status);
   //test();
-  tbmainLogic(); //Automation 
+  mainLogic(); //Automation 
   //tempratureSendSensorData();
 }
 
 void mainLogic(){
+  if(Serial.available()){
+    char c = Serial.read();
+    if(c = 's'){
+      _NfossetStatus.print();
+      _OfossetStatus.print();
+      _PumpStatus.print();
+      _DrainageStatus.print();
+      _BatteryStatus.print();
+      _WaterHightStatus.print();
+      _TemperatureStatus.print();
+      _HumidityStatus.print();
+      //_TurbidityStatus.print();
+    }
+  }
+  
   espReconnect();
-//  serverReconnect();
+  serverReconnect();
   
   int h = waterHightRead();
   if(h < MINIMUM_WATER_FOR_PUMP){ //The water is bellow the minimum - pump stop and the fosset is open
     pumpStop();
-    if (_OFossetManualRequest == FossetManualRequestValue::FossetAutomatic) ofossetOpen(); //Manual control on the fosset
+    if (_OFossetManualRequest == FossetManualRequestValue::FossetAutomatic) ofossetOpen(); //Manual control on the fosset - FossetManualRequestValue::FossetAutomatic
   }
   else if(h >= MINIMUM_WATER_FOR_PUMP){ // The water is above the minimum ammount to start the pump again. 
-    if (_PumpManualRequest == PumpManualRequestValue::PumpAutomatic) pumpStart(); //Manual control on the pump
+    if (_PumpManualRequest == PumpManualRequestValue::PumpAutomatic) pumpStart(); //Manual control on the pump - PumpManualRequestValue::PumpAutomatic)
   }
-  else if(h >= MAXIMUM_WATER_IN_TANK){ //The water levle has reached the maximum, the fosset is closing (the pump keeps working)
-    nfossetClose();
+  if(h >= MAXIMUM_WATER_IN_TANK){ //The water levle has reached the maximum, the fosset is closing (the pump keeps working)
+    ofossetClose();
   }
-  
+
   //Cheeks if the pump is really running when he gets the command to start.//
-  if(_IsPumpRunning && !pumpIsRunning()){ 
-    _PumpError = true; 
+  if(pumpIsSignalOn() && !pumpIsCurrentOn()){  
     pumpStop();
-    notifyPumpError();
   }
-  else{
-    _PumpError = false;
+/*
+  float v = batteryGetVoltage();
+  float p = batteryGetPercent();
+
+  if(v < MINIMUM_VOLTAGE_FOR_WARNING){
+    pumpStop();
+    ofossetClose();
+    nfossetClose();
+    drainageClose();
   }
 
   //check battery volateg
@@ -179,19 +217,14 @@ void mainLogic(){
   if(b < MINIMUM_VOLTAGE_FOR_ERROR){
     notifyLowBatteryError(b);
   }
-  else if(b < MINIMUM_VOLTAGE_FOR_WARNING){
-    _VoltageError = true;
+  else(b < MINIMUM_VOLTAGE_FOR_WARNING){
     pumpStop();
     ofossetClose();
     drainageClose();
     notifyLowBatteryWarning(b);
   }
-  else
-  {
-    _VoltageError = false;
-  }
+  */
 }
-
 void test()
 {
 //  TEMPERATURETest();
@@ -216,6 +249,7 @@ void checkStatus(){
   temperatureCheckStatus();
   humidityCheckStatus();
   lcdHandleTouch();
+  waterHightCheckStatus();
 }
 void serialInit(){
   Serial.begin(9600);

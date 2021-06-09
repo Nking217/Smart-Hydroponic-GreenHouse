@@ -169,23 +169,37 @@ void lcdShowStatusScreen(){
   lcd.Set_Text_Size(2);
   lcd.Draw_Rectangle(4,5,60,30);
   lcd.Print_String("Home", 10,10);
-  /*  
+  
   lcd.Set_Text_Size(4);
   lcd.Set_Text_colour(BLACK);
   lcd.Set_Text_Back_colour(BLACK);
   lcd.Print_String("Status Screen", 90, 4);
   lcd.Set_Draw_color(BLACK);
   lcd.Draw_Fast_HLine(90,35,310); //make a line on the screen
-  lcd.Set_Text_Size(3);
+  lcd.Set_Text_Size(2);
+  //Short status for now
+  lcd.Print_String("Nfosset:", 10, 65);
+  lcd.Print_String("Ofosset:", 10, 85);
+  lcd.Print_String("Pump:", 10, 105);
+  lcd.Print_String("Drainage:", 10, 125);
+  lcd.Print_String("Battery:", 10, 145);
+  lcd.Print_String("Water:", 10, 165);
+  lcd.Print_String("Temprature:", 10, 185);
+  lcd.Print_String("Humidity:", 10, 205);
+  lcd.Print_String("Turbidity:", 10, 225);
+  lcd.Print_String("WI-FI:", 10, 245);
+  lcd.Print_String("Server:", 10, 265);
+  lcd.Print_String("Light:", 10, 285);
 
   /// Status buttons on the status screen ///
   //*Nfosset Button
+    /*
   lcd.Set_Text_Size(3);
   lcd.Set_Text_colour(BLACK);
   lcd.Set_Text_Back_colour(BLACK);
   lcd.Draw_Rectangle(10,45,180,85);
-  lcd.Print_String("Nfosset1", 15, 55);
-                
+  lcd.Print_String("Nfosset", 15, 55);
+       
   //*Ofosset button
   lcd.Set_Text_Size(3);
   lcd.Set_Text_colour(BLACK);
@@ -206,12 +220,13 @@ void lcdShowStatusScreen(){
   lcd.Set_Text_Back_colour(BLACK);
   lcd.Draw_Rectangle(10,65,180,125);
   lcd.Print_String("Drainage", 15, 75);
-  */
-
+  
+*/
   
 }
 
 void lcdShowStatusScreenStatus(){
+  lcd.Set_Text_Size(2);
   lcd.Print_String("          ", 105, 65);
   lcdWriteStatus(105, 65, _NfossetStatus.Short);
   lcd.Print_String("          ", 105, 85);
