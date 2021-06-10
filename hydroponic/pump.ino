@@ -59,61 +59,6 @@ bool pumpIsSignalOn(){
     return false;
   }
 }
-/*
-StatusResult pumpStatus_Short(){
-  bool isRunning = pumpIsRunning();
-  bool isWaterFlowing = pumpIsWaterFlowing();
-  bool canRun = pumpCanRun();
-
-  switch (_PumpManualRequest){
-    case PumpManualRequestValue::PumpAutomatic:
-    {
-      if(isWaterFlowing == true)
-      {
-        if(canRun == true)
-          return StatusResult ("On", STATUS_OK);
-        else
-          return StatusResult ("Error", STATUS_ERROR);
-      }
-      else 
-      {
-        if(isRunning)
-          return StatusResult ("Error", STATUS_ERROR);
-        else 
-          return StatusResult ("Off", STATUS_OK);
-      }
-      break;
-    } 
-
-    case PumpManualRequestValue::PumpStart:
-    {
-      if(isWaterFlowing == true){
-        if(canRun)
-          return StatusResult ("On", STATUS_OK);
-        else
-          return StatusResult ("Error", STATUS_ERROR);
-      }
-      else{ 
-        return StatusResult ("Error", STATUS_ERROR);
-      }
-      break;
-    }
-    case PumpManualRequestValue::PumpStop:{
-      if(isWaterFlowing == false){
-        if(!isRunning)
-          return StatusResult ("Off", STATUS_OK);
-        else
-          return StatusResult ("Error", STATUS_ERROR);
-      }
-      else{
-        return StatusResult ("Error", STATUS_ERROR);
-      }
-      break;
-    }
-    
-  }
-}
-*/
 
 bool pumpSuposeToRun(){
   return((_PumpManualRequest == PumpManualRequestValue::PumpAutomatic && pumpCanRun()) || _PumpManualRequest == PumpManualRequestValue::PumpStart);

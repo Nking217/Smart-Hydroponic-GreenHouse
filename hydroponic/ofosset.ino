@@ -2,20 +2,7 @@
 /// OSMOTIC FOSSET  /// - Water in... 
 ///////////////////////
 int _OfossetSignalOn;
-/*
-class ofossetStatus{
-  public:
-    StatusResult WaterFlowing;
-    StatusResult CurrentOn;
-    StatusResult SignalOn;
-    StatusResult CanRun;
-    StatusResult SuposeToRun;
 
-    StatusResult Short;    
-};
-
-ofossetStatus _OfossetStatus;
-*/
 void ofossetTest(){
   ofossetOpen();
   delay(500);
@@ -73,49 +60,9 @@ bool ofossetIsSignalOn(){
   else
     return false;
 }
-/*
-StatusResult ofossetStatus_Short(){
-  bool ofossetFlowing = ofossetIsWaterFlowing();// osmotic fosset
-  bool ofossetCanRunVar = ofossetCanRun();
-  
-  switch (_OFossetManualRequest) {
-    case FossetManualRequestValue::FossetAutomatic:
-    {
-      if(ofossetFlowing == true)
-      {
-         if(ofossetCanRunVar == true)
-            return StatusResult ("On", STATUS_OK);
-         else
-            return StatusResult ("Error", STATUS_ERROR);
-      }
-      else
-      {
-         return StatusResult ("Off", STATUS_OK); //a
-      }
-      break;
-    }
-    case FossetManualRequestValue::Open:
-    {
-      if(ofossetFlowing == true)
-        return StatusResult ("On", STATUS_OK);
-      else
-        return StatusResult ("Error", STATUS_ERROR);
-      break;
-    }
-    case FossetManualRequestValue::Close:
-      if(ofossetFlowing == false)
-        return StatusResult ("Off", STATUS_OK);
-      else
-        return StatusResult ("Error", STATUS_ERROR);
-      break;
-    default:  
-      return StatusResult ("Unknown", STATUS_WARNING);
-      
-  }
-}
-*/
 
-//bool ofossetCanRunVar = ofossetCanRun();
+
+
 
 bool ofossetSuposeToRun(){
   return ((_OFossetManualRequest == FossetManualRequestValue::FossetAutomatic && ofossetCanRun()) || _OFossetManualRequest == FossetManualRequestValue::FossetOpen);  //complete by the enum

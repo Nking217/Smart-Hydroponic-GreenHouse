@@ -220,17 +220,14 @@ void espSetConnectionTimeout(int value){
 
 String espGetWifiSSID(){
   return "Sulam";
-  //eepromReadString(EEPROM_ESP_SSID,buffer);
-  //strcpy(buffer, "NAVE");   //TODO: remove this
+  //strcpy(buffer, "NAVE");   
 }
 
 String espGetWifiPassword(){
   return "2508572511";
-  //eepromReadString(EEPROM_ESP_PASSWORD,buffer);
-  //strcpy(buffer, "0524424546");   //TODO: remove this
+  //strcpy(buffer, "0524424546");   
 }
 
 int espGetConnectionTimeout(){
   return "45000";
-  //return eepromReadInt(EEPROM_ESP_CONNECTION_TIMEOUT);
 }

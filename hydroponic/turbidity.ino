@@ -29,7 +29,7 @@ bool turbidityIsWorking(){
 
 void turbidityCheckStatus(){ //Finish the turbidity Check Status function today.
   int turbidityPercent = turbidityReadPercent();
-  //bool turbidityIsWorking = turbidityIsWorking();
+  bool turbidityIsWorking = turbidityIsWorking();
   
   
 }
